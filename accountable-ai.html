@@ -21,11 +21,22 @@
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'DM Sans', sans-serif;
     }
+    .nav-links {
+      position: relative;
+      z-index: 2;
+    }
 
+    .nav-cta {
+      position: relative;
+      z-index: 1;
+    }   
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
 
+    #services {
+      scroll-margin-top: 100px;
+    }
     body {
       background: var(--navy);
       color: var(--cream);
@@ -564,8 +575,21 @@
       color: var(--muted);
       line-height: 1.75;
     }
-
-    /* ── CTA ── */
+    #services .clients-label {
+          text-align: left;
+          margin-bottom: 3rem;
+    }
+     
+    .services-kicker {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 1.5rem 0 rem 0;
+      max-width: 700px;
+    }
+      
+       /* ── CTA ── */
     .cta-section {
       background: var(--navy-mid);
       border-top: 1px solid rgba(200,169,110,0.12);
@@ -659,20 +683,54 @@
       opacity: 0.8;
       margin-bottom: 1rem;
     }
+    .text-link {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.25s ease;
+    }  
+
+    .text-link:hover {
+      border-bottom: 1px solid var(--gold);
+      color: var(--gold-light);
+        } 
+        /* ── PRIVACY SECTION ── */
+    .privacy-section {
+      padding: 6rem 4rem;
+      border-top: 1px solid rgba(200,169,110,0.08);
+    }
+
+    .privacy-content {
+      max-width: 640px;
+      margin-top: 2rem;
+    }
+
+    .privacy-content p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+    }
+    .privacy-section {
+    opacity: 0.9;
+    }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Accountable <span>AI</span></a>
-    <ul class="nav-links">
+<nav>
+  <a href="#" class="nav-logo">Accountable <span>AI</span></a>
+
+  <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#philosophy">About</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Get in Touch</a>
-  </nav>
+     </ul>
 
+  <a href="mailto:enquiry@accountableai.uk" class="text-link">
+  Get in touch via email
+</a>
+</nav>
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-left">
@@ -684,11 +742,14 @@
         AI adoption<br/>done <em>responsibly.</em>
       </h1>
       <p class="hero-sub">
-        I help small businesses use AI safely and confidently, with practical guardrails, simple policies, and clear guidance for tools like ChatGPT and Microsoft Copilot.
-      </p>
+I help small businesses use AI safely and confidently — bringing structure to tools that are often already in use, but not yet fully understood.      </p>
       <p class="hero-accent">Built on experience in clinical research, data governance, and regulated environments.</p>
       <div class="hero-actions">
-        <a href="#services" class="btn-primary">Start the conversation</a>
+        <a href="https://wa.me/447380356761?text=Hi%20Kim%2C%20I%27m%20interested%20in%20your%20AI%20services"
+   class="text-link"
+   target="_blank">
+  Start the conversation on WhatsApp →
+</a>
       </div>
       <p class="hero-cta-note">Free 20 minute introductory call</p>
     </div>
@@ -700,15 +761,15 @@
 
       <div class="stat-card">
         <div class="stat-number">Curious Experimenters</div>
-        <div class="stat-label">You’ve started trying AI tools and seeing what they can do.</div>
+        <div class="stat-label">You’ve started using AI tools and seeing what they can do.</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">Time Savers</div>
-        <div class="stat-label">You’re using AI to save time or reduce costs.</div>
+        <div class="stat-label">You’re already using AI tools and starting to rely on them.</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">Risk-Aware Businesses</div>
-        <div class="stat-label">You’re starting to wonder what risks AI might introduce.</div>
+        <div class="stat-label">YYou’re starting to question what risks AI may already be introducing</div>
       </div>
     </div>
   </section>
@@ -725,7 +786,7 @@
         <p class="philosophy-text">My background in biomolecular science and project delivery has shaped the analytical approach I bring to new technologies like AI..</p>
         <p class="philosophy-text">I focus on understanding how tools interact with data, workflows, and real-world business processes.</p>
         <p class="philosophy-text">I created the CLEAR Framework to help small businesses introduce AI in a way that is structured, practical, and proportionate.</p>
-        <img src="kim-stevens-profile.jpg" alt="Kim Stevens" class="profile-image">
+        <img src="kim-stevens-profile.png" alt="Kim Stevens" class="profile-image">
       </div>
       <div class="reveal">
         <div class="section-label"><div class="section-label-line"></div><span>Experience in regulated environments</span></div>
@@ -735,18 +796,23 @@
     successful AI adoption is rarely just about the technology itself.
   </span> It is about understanding workflows, data, accountability, and the expectations around how tools should be used.</p>
         <p class="philosophy-text">The same structured approach now shapes how I help small businesses introduce AI with practical guardrails, clear workflows, and proportionate governance.</p>
+      <a href="#services" class="text-link">
+    See how this applies to your business →
+</a>
       </div>
+      
     </div>
   </section>
 
-  <!-- CLIENTS -->
-  <section class="clients">
-    <div class="clients-label">Built on experience in regulated environments, data governance, and real-world delivery</div>
  
-  </section>
 
   <!-- Services -->
-  <section id="services" style="padding-top:0">
+  
+
+</section>
+  <section id="services" style="padding: top 0;">
+    <div class="services-kicker">Built on experience in regulated environments, data governance, and real-world delivery</div>
+
     <div class="section-label"><div class="section-label-line"></div><span>Services</span></div>
     <p class="services-intro reveal">Practical support for small businesses using AI — with clear guardrails, simple policies, and confidence in how it works.</p>
 <p class="services-path reveal">
@@ -811,25 +877,66 @@ Best for businesses planning a structured rollout.<br/><br/>
 
   <!-- CTA -->
   <section id="contact" class="cta-section">
-    <div class="section-label" style="justify-content:center"><div class="section-label-line"></div><span>Work With Us</span><div class="section-label-line"></div></div>
-    <h2 class="section-title reveal">Ready to build AI<br/>you can stand behind?</h2>
-    <p class="section-intro reveal">Whether you're pre-deployment or mid-crisis, we'll tell you honestly what you need — and help you get there.</p>
+    <div class="section-label" style="justify-content:center"><div class="section-label-line"></div><span>NEXT STEP</span><div class="section-label-line"></div></div>
+    <h2 class="section-title reveal">Bring clarity to how<br/>AI fits your business</h2>
+    <p class="section-intro reveal">Practical guidance, clear guardrails, and honest advice — so you can move forward with confidence..</p>
     <div class="cta-row reveal">
-      <a href="mailto:hello@accountable.ai" class="btn-primary">Start the Conversation</a>
-      <a href="#services" class="btn-ghost">See Our Services</a>
+ <p>
+  Prefer email? <a href="mailto:enquiry@accountableai.uk" class="text-link">Get in touch</a>
+  <span class="divider">—</span>
+  Or message me on 
+  <a href="https://wa.me/447380356761" target="_blank" class="text-link">WhatsApp</a>
+</p>
     </div>
   </section>
 
+  <section id="privacy" class="section privacy-section">
+    <div class="container">
+
+      <p class="section-label">PRIVACY</p>
+
+      <h2 class="section-title">
+        Simple, transparent handling of your information
+      </h2>
+
+      <div class="privacy-content">
+        <p>
+          I only collect the information you choose to share when you get in touch.
+        </p>
+
+        <p>
+          Your details are used solely to respond to your enquiry and are never shared with third parties.
+        </p>
+
+        <p>
+          I don’t use your information for marketing unless you explicitly ask me to stay in touch.
+        </p>
+
+        <p>
+          If you have any questions about how your information is handled, feel free to ask.
+        </p>
+      </div>
+
+    </div>
+  </section>
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Accountable <span>AI</span></div>
-    <ul class="footer-links">
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">Terms</a></li>
-      <li><a href="#">LinkedIn</a></li>
-    </ul>
-    <div class="footer-copy">© 2026 Accountable AI Ltd. London, UK.</div>
-  </footer>
+  <!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Accountable <span>AI</span></div>
+
+  <ul class="footer-links">
+    <li><a href="#privacy">Privacy</a></li>
+    <li>
+      <a href="https://www.linkedin.com/in/kimstevensbiolife/"
+         target="_blank"
+         rel="noopener noreferrer">
+        LinkedIn
+      </a>
+    </li>
+  </ul>
+
+  <div class="footer-copy">© 2026 Accountable AI. All rights reserved.</div>
+</footer>
 
   <script>
     // Scroll reveal
