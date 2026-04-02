@@ -1,0 +1,61 @@
+===============================================================
+ACCOUNTABLE AI — FOLLOW-UP EMAIL (send 2–3 days after sign-up)
+===============================================================
+
+SUBJECT LINE:
+Your AI Use Quick Check — and one question
+
+
+EMAIL BODY:
+---
+
+Hi [First name / there],
+
+I hope you had a chance to work through the AI Use Quick Check.
+
+It is designed to be a quick, practical way to look at how AI is currently being used in your business — particularly around data, ownership, and consistency.
+
+If any of the questions raised concerns, or simply made you realise things are a bit unclear, that is usually a good point to pause and take stock.
+
+If helpful, I'm happy to have a short conversation about what you found and where the main gaps might be. No hard sell — just a practical look at what may need attention.
+
+You can reply to this email, or book a short call here: [link]
+
+Kim
+Accountable AI
+accountableai.uk
+
+---
+
+NOTES FOR USE:
+- Send 2–3 days after the welcome/delivery email
+- Replace [First name / there] with your MailerLite merge tag (e.g. {$name|there})
+- Replace [link] with your booking link (e.g. Calendly or Cal.com)
+- Signature: keep it plain text — no logo, no coloured banner — consistent with the calm, credible tone
+
+===============================================================
+WELCOME / DELIVERY EMAIL (send immediately on sign-up)
+===============================================================
+
+SUBJECT LINE:
+Your AI Use Quick Check
+
+
+EMAIL BODY:
+---
+
+Hi [First name / there],
+
+Here is your copy of the AI Use Quick Check:
+
+https://accountableai.uk/downloads/ai-use-quick-check.pdf
+
+It is a short, practical checklist — should take around 10 minutes to work through.
+
+If anything prompts a question, feel free to reply to this email.
+
+Kim
+Accountable AI
+accountableai.uk
+
+---
