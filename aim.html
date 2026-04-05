@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIM Framework — Accountable AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+  --navy: #0b0f1f;
+  --gold: #c8a96e;
+  --gold-light: #e2c99a;
+  --gold-deep: #8a6820;
+  --page-bg: #f5f2ec;
+  --page-alt: #ece8de;
+  --page-white: #ffffff;
+  --text: #0b0f1f;
+  --text-body: rgba(11,15,31,0.74);
+  --text-muted: rgba(11,15,31,0.60);
+  --border: rgba(11,15,31,0.09);
+  --border-gold: rgba(200,169,110,0.35);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV — kept dark, anchors the page ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      border-bottom: 1px solid rgba(200,169,110,0.12);
+      backdrop-filter: blur(12px);
+      background: rgba(11,15,31,0.88);
+      animation: fadeDown 0.8s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: #f4efe6;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244,239,230,0.55);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 0.6rem 1.4rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.25s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.65rem 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: var(--sans);
+      display: inline-block;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-ghost {
+      color: var(--navy);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid (11,15,31,0.25);
+      padding-bottom: 2px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .btn-ghost:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+    .text-link {
+      color: var(--gold-deep);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+    .text-link:hover {
+      border-bottom: 1px solid var(--gold-deep);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 10rem 4rem 5rem;
+      position: relative;
+      overflow: hidden;
+      max-width: 860px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Very faint warm tone behind hero */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50vw; height: 100%;
+      background: radial-gradient(ellipse at 80% 40%, rgba(200,169,110,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+    .hero-eyebrow span {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .eyebrow-line {
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    .hero-headline {
+      font-family: var(--sans);
+      font-size: clamp(2rem, 4.2vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.9s 0.35s ease both;
+      max-width: 760px;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: var(--gold-deep);
+      font-weight: 400;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text-body);
+      max-width: 540px;
+      margin-bottom: 0.8rem;
+      animation: fadeUp 0.9s 0.5s ease both;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+
+    .hero-question {
+      font-size: 1rem;
+      font-weight: 500;
+      font-style: normal;
+      color: var(--text);
+      margin-bottom: 2.8rem;
+      animation: fadeUp 0.9s 0.6s ease both;
+      border-left: 2px solid rgba(200,169,110,0.5);
+      padding-left: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.9s 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .section-label span {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .section-label-line { width: 28px; height: 1px; background: var(--gold); opacity: 0.7; }
+
+    .section-title {
+      font-family: var(--sans);
+      font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .section-title em {
+      font-style: normal;
+      font-weight: 400;
+      color: var(--gold-deep);
+    }
+
+    .section-intro {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 3.5rem;
+    }
+    .section-intro strong { color: var(--text); font-weight: 500; }
+
+    /* ── INTRO SECTION ── */
+    .intro-section {
+      background: var(--page-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro-section blockquote {
+      font-family: var(--sans);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.7;
+      color: var(--text);
+      position: relative;
+      padding: 1.4rem 1.6rem;
+      max-width: 680px;
+      margin: 2rem 0 2.5rem;
+      border-left: 3px solid rgba(200,169,110,0.6);
+      background: var(--page-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+    .intro-section blockquote::before { display: none; }
+
+    .intro-body {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.85;
+      max-width: 640px;
+    }
+    .intro-body p { margin-bottom: 1.2rem; }
+    .intro-body p:last-child { margin-bottom: 0; }
+    .intro-body strong { color: var(--text); font-weight: 500; }
+
+    /* ── 4-CARD GRID ── */
+    .aim-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .aim-card {
+      background: var(--page-white);
+      padding: 2.4rem 2rem;
+      position: relative;
+      transition: background 0.25s;
+    }
+    .aim-card:hover { background: #faf8f4; }
+    .aim-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    .aim-card-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: 0.92;
+      margin-bottom: 0.6rem;
+    }
+
+    .aim-card-title {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .aim-card-question {
+      font-size: 0.8rem;
+      color: var(--text-body);
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .aim-card-examples {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .aim-card-examples li {
+      font-size: 0.8rem;
+      color: var(--text-body);
+      line-height: 1.5;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .aim-card-examples li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.58em;
+      width: 5px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+
+   /* ── RUNTIME OUTCOMES ── */
+.outcomes-section {
+  background: var(--page-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.outcome-card {
+  background: var(--page-white);
+  padding: 2rem 1.6rem;
+  transition: background 0.25s;
+  border-top: 3px solid transparent;
+}
+.outcome-card:hover { background: #faf8f4; }
+
+
+    .outcome-card.allow-card        { border-top-color: #b8923e; }
+    .outcome-card.review-card       { border-top-color: rgba(200,169,110,0.75); }
+    .outcome-card.block-card        { border-top-color: rgba(11,15,31,0.6); }
+    .outcome-card.escalate-card     { border-top-color: rgba(11,15,31,0.8); }
+    .outcome-card.hold-card         { border-top-color: rgba(11,15,31,0.5); }
+    .outcome-state {
+      font-family: var(--sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(11,15,31,0.12);
+    }
+    .outcome-state.allow        { color: #8a6820; }
+    .outcome-state.allow-review { color: var(--gold-deep); }
+    .outcome-state.block    { color: rgba(11,15,31,0.78); }
+    .outcome-state.escalate { color: rgba(11,15,31,0.90); }
+    .outcome-state.hold     { color: rgba(11,15,31,0.74); }
+    .outcome-desc {
+      font-size: 0.83rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    /* ── MULTI-AGENT ── */
+    .multi-agent-section {
+      border-top: 1px solid var(--border);
+    }
+
+    .multi-agent-intro {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.85;
+      max-width: 640px;
+      margin-bottom: 3.5rem;
+    }
+
+    .multi-agent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .multi-card {
+      background: var(--page-white);
+      border: 1px solid var(--border);
+      padding: 2.4rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .multi-card:hover {
+      border-color: var(--border-gold);
+      box-shadow: 0 2px 16px rgba(11,15,31,0.05);
+    }
+
+    .multi-card-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: 0.92;
+      margin-bottom: 0.8rem;
+    }
+
+    .multi-card-title {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .multi-card-body {
+      font-size: 0.85rem;
+      color: var(--text-body);
+      line-height: 1.8;
+    }
+
+    /* ── WHO AIM IS FOR ── */
+    .who-section {
+      background: var(--page-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .who-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 3rem;
+    }
+
+    .who-col-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: 0.92;
+      margin-bottom: 1.4rem;
+    }
+
+    .who-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .who-list li {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .who-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 5px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    /* ── PRACTICAL VALUE ── */
+    .value-section {
+      border-top: 1px solid var(--border);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .value-item {
+      background: var(--page-white);
+      padding: 2rem 1.8rem;
+      font-size: 0.875rem;
+      color: var(--text-body);
+      font-weight:400;
+      line-height: 1.75;
+      position: relative;
+      transition: background 0.25s;
+    }
+    .value-item:hover { background: #faf8f4; }
+    .value-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 2px; height: 100%;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .value-item:hover::before { opacity: 0.6; }
+
+    /* ── DEPLOYMENT ── */
+    .deployment-section {
+      background: var(--page-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .deployment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .deploy-card {
+      background: var(--page-white);
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(200,169,110,0.5);
+      padding: 2.4rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .deploy-card:hover {
+      border-color: var(--border-gold);
+      border-left-color: var(--gold);
+      box-shadow: 0 2px 16px rgba(11,15,31,0.05);
+    }
+
+    .deploy-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      opacity: 0.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .deploy-title {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .deploy-body {
+      font-size: 0.875rem;
+      color: var(--text-body);
+      line-height: 1.8;
+      margin-bottom: 1.4rem;
+    }
+
+    .deploy-outputs-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-body);
+      opacity: 0.92
+      ;
+      margin-bottom: 0.5rem;
+    }
+
+    .deploy-outputs {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ── EXAMPLE ── */
+    .example-section {
+      border-top: 1px solid var(--border);
+    }
+
+    .example-body {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.85;
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    .example-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+    .example-list li {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.65;
+      padding: 1.1rem 1.4rem;
+      background: var(--page-white);
+      border: 1px solid var(--border);
+      position: relative;
+      padding-left: 2rem;
+    }
+    .example-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 3px; height: 100%;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+    .example-list li strong { color: var(--text); font-weight: 500; }
+
+    .example-closing {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.85;
+      max-width: 640px;
+    }
+    .example-closing strong { color: var(--text); font-weight: 500; }
+
+    /* ── NOT SECTION ── */
+    .not-section {
+      background: var(--page-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .not-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin: 2rem 0 2.5rem;
+      max-width: 540px;
+    }
+    .not-list li {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .not-list li::before {
+      content: '×';
+      position: absolute;
+      left: 0;
+      color: rgba(200,169,110,0.6);
+      font-size: 0.85rem;
+      top: 0.05em;
+    }
+
+    .not-closing {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.85;
+      max-width: 600px;
+      padding: 1.5rem 2rem;
+      background: var(--page-white);
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(200,169,110,0.6);
+    }
+    .not-closing strong { color: var(--text); font-weight: 500; }
+
+    /* ── CLOSING CTA — kept dark for weight ── */
+    .cta-section {
+      background: var(--navy);
+      border-top: 1px solid rgba(200,169,110,0.12);
+      text-align: center;
+    }
+    .cta-section .section-title {
+      color: #f4efe6;
+      margin-bottom: 1.2rem;
+    }
+    .cta-section .section-title em { color: var(--gold-light); }
+    .cta-section .section-intro {
+      color: rgba(244,239,230,0.62);
+      margin: 0 auto 3rem;
+      max-width: 560px;
+    }
+    .cta-section .section-label span { color: var(--gold); }
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 4rem;
+      background: var(--page-bg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(11,15,31,0.45);
+    }
+    .footer-logo span { color: var(--gold-deep); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(11,15,31,0.3);
+      letter-spacing: 0.05em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(11,15,31,0.35);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--gold-deep); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { font-size: 0.7rem; padding: 0.5rem 0.9rem; }
+
+      .hero { padding: 7rem 1.5rem 3rem; min-height: auto; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .aim-grid { grid-template-columns: 1fr 1fr; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .multi-agent-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .who-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .value-grid { grid-template-columns: 1fr; }
+      .deployment-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+
+      .section-title { font-size: clamp(1.4rem, 6vw, 2rem); }
+
+      footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+      }
+      .footer-links { justify-content: center; }
+      .cta-row { flex-direction: column; gap: 1rem; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .aim-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Accountable <span>AI</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#regulated">Regulated Teams</a></li>
+      <li><a href="index.html#philosophy">About</a></li>
+      <li><a href="aim.html" class="active">AIM Framework</a></li>
+    </ul>
+    <a href="mailto:enquiry@accountableai.uk" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span>AIM Framework</span>
+    </div>
+    <h1 class="hero-headline">
+      A decision gate for AI actions —<br><em>not just a policy after the fact</em>
+    </h1>
+    <p class="hero-sub">
+      AIM, the <strong style="color: var(--text); font-weight: 500;">Authority &amp; Intervention Model</strong>, is a practical framework for deciding whether an AI system should be allowed to act at the moment of execution.
+    </p>
+    <p class="hero-sub" style="margin-bottom: 0.5rem;">
+      It helps answer one question clearly:
+    </p>
+    <p class="hero-question">Can this action happen right now — and why?</p>
+    <div class="hero-actions">
+      <a href="mailto:enquiry@accountableai.uk?subject=AIM%20Framework%20Enquiry" class="btn-primary">Ask about AIM</a>
+      <a href="#how-it-works" class="btn-ghost">See how it works</a>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section" id="intro">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>The gap</span></div>
+    <h2 class="section-title reveal">AI governance often stops <em>too early</em></h2>
+    <div class="intro-body reveal">
+      <p>Many organisations already have AI policies, review processes, and lifecycle controls.</p>
+      <p>Those all matter. But they do not always answer the operational question that matters most in practice:</p>
+    </div>
+    <blockquote class="reveal">
+      Should this system be allowed to do this specific thing now, on this basis, at this level of consequence?
+    </blockquote>
+    <div class="intro-body reveal">
+      <p>That is the gap AIM is designed to address.</p>
+      <p>AIM focuses on the point where an AI system is about to act. It makes the decision gate visible, testable, and easier to defend.</p>
+    </div>
+  </section>
+
+  <!-- WHAT AIM DOES -->
+  <section id="how-it-works">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>What AIM does</span></div>
+    <h2 class="section-title reveal">A runtime decision-control model for <em>AI systems and agent workflows</em></h2>
+    <p class="section-intro reveal">AIM evaluates four things:</p>
+    <div class="aim-grid reveal">
+
+      <div class="aim-card">
+        <div class="aim-card-label">01</div>
+        <div class="aim-card-title">Action</div>
+        <div class="aim-card-question">What is the system about to do?</div>
+        <ul class="aim-card-examples">
+          <li>send a communication</li>
+          <li>update a record</li>
+          <li>approve or reject something</li>
+          <li>change access rights</li>
+        </ul>
+      </div>
+
+      <div class="aim-card">
+        <div class="aim-card-label">02</div>
+        <div class="aim-card-title">Authority</div>
+        <div class="aim-card-question">What gives it permission to do that?</div>
+        <ul class="aim-card-examples">
+          <li>delegated business rules</li>
+          <li>defined task scope</li>
+          <li>policy thresholds</li>
+          <li>human approval on file</li>
+        </ul>
+      </div>
+
+      <div class="aim-card">
+        <div class="aim-card-label">03</div>
+        <div class="aim-card-title">Basis</div>
+        <div class="aim-card-question">What is the action relying on?</div>
+        <ul class="aim-card-examples">
+          <li>user input</li>
+          <li>source material</li>
+          <li>workflow or CRM data</li>
+          <li>specialist review findings</li>
+        </ul>
+      </div>
+
+      <div class="aim-card">
+        <div class="aim-card-label">04</div>
+        <div class="aim-card-title">Impact</div>
+        <div class="aim-card-question">What happens if it is wrong?</div>
+        <ul class="aim-card-examples">
+          <li>operational disruption</li>
+          <li>customer harm</li>
+          <li>regulatory exposure</li>
+          <li>irreversibility</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RUNTIME OUTCOMES -->
+  <section class="outcomes-section" id="outcomes">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Runtime outcome</span></div>
+    <h2 class="section-title reveal">What AIM <em>returns</em></h2>
+    <p class="section-intro reveal">Each action evaluated by AIM resolves to one of five states.</p>
+    <div class="outcomes-grid reveal">
+
+      <div class="outcome-card">
+        <div class="outcome-indicator allow"></div>
+        <div class="outcome-state allow">Allow</div>
+        <div class="outcome-desc">Authority confirmed. Basis sufficient. Impact within bounds.</div>
+      </div>
+
+      <div class="outcome-card">
+        <div class="outcome-indicator allow-review"></div>
+        <div class="outcome-state allow-review">Allow with review</div>
+        <div class="outcome-desc">Proceed with visibility. Revalidation needed before the next step.</div>
+      </div>
+
+      <div class="outcome-card">
+        <div class="outcome-indicator block"></div>
+        <div class="outcome-state block">Block</div>
+        <div class="outcome-desc">Do not proceed. Escalation or redesign is required.</div>
+      </div>
+
+      <div class="outcome-card">
+        <div class="outcome-indicator escalate"></div>
+        <div class="outcome-state escalate">Escalate</div>
+        <div class="outcome-desc">A human decision is required before the workflow can continue.</div>
+      </div>
+
+      <div class="outcome-card">
+        <div class="outcome-indicator hold"></div>
+        <div class="outcome-state hold">Hold until cleared</div>
+        <div class="outcome-desc">A specialist finding is active. Downstream execution pauses until it is resolved.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MULTI-AGENT -->
+  <section class="multi-agent-section" id="multi-agent">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Multi-agent workflows</span></div>
+    <h2 class="section-title reveal">Why step-level checks are <em>not enough</em></h2>
+    <p class="multi-agent-intro reveal">
+      In multi-agent systems, the challenge is not only whether one step is acceptable. It is also whether the chain as a whole remains defensible as work moves between agents.
+    </p>
+    <div class="multi-agent-grid">
+
+      <div class="multi-card reveal">
+        <div class="multi-card-label">Chain sequencing</div>
+        <div class="multi-card-title">A blocked upstream step should stop the chain</div>
+        <div class="multi-card-body">If the chain is already blocked upstream, downstream steps should not continue as if nothing happened.</div>
+      </div>
+
+      <div class="multi-card reveal" style="transition-delay: 0.1s;">
+        <div class="multi-card-label">Inherited corroboration</div>
+        <div class="multi-card-title">Agreement is not the same as verification</div>
+        <div class="multi-card-body">Repeated agreement is not the same as independent verification. A chain should not become more trusted simply because several agents endorse the same weak basis.</div>
+      </div>
+
+      <div class="multi-card reveal" style="transition-delay: 0.2s;">
+        <div class="multi-card-label">Specialist hold handling</div>
+        <div class="multi-card-title">A local pass can still create a downstream hold</div>
+        <div class="multi-card-body">A specialist review can pass locally and still create a downstream hold if it identifies a real unresolved issue.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHO AIM IS FOR -->
+  <section class="who-section" id="who">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Who AIM is for</span></div>
+    <h2 class="section-title reveal">Where AIM is <em>most useful</em></h2>
+    <p class="section-intro reveal">AIM is designed for organisations using AI in workflows where decisions need to remain visible, explainable, and controlled.</p>
+    <div class="who-inner">
+      <div class="reveal">
+        <div class="who-col-label">Particularly relevant for</div>
+        <ul class="who-list">
+          <li>AI-enabled workflow design</li>
+          <li>copilots and internal automation</li>
+          <li>governance, risk, and compliance teams</li>
+          <li>product, operations, and programme leads</li>
+          <li>regulated or higher-risk environments</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="who-col-label">Especially useful when AI outputs can affect</div>
+        <ul class="who-list">
+          <li>customers</li>
+          <li>records</li>
+          <li>approvals</li>
+          <li>access</li>
+          <li>pricing</li>
+          <li>regulated content</li>
+          <li>operational decisions</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL VALUE -->
+  <section class="value-section" id="value">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Practical value</span></div>
+    <h2 class="section-title reveal">What AIM helps <em>you do</em></h2>
+    <div class="value-grid reveal">
+      <div class="value-item">Identify where AI actions should be allowed, reviewed, blocked, or held</div>
+      <div class="value-item">Map decision gates inside live workflows</div>
+      <div class="value-item">Distinguish weak basis from genuine verification</div>
+      <div class="value-item">Define stop points and escalation routes</div>
+      <div class="value-item">Make specialist findings visible in operational control</div>
+      <div class="value-item">Strengthen the defensibility of AI-enabled processes</div>
+    </div>
+  </section>
+
+  <!-- DEPLOYMENT -->
+  <section class="deployment-section" id="deployment">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Deployment</span></div>
+    <h2 class="section-title reveal">From workflow review to <em>operational embed</em></h2>
+    <p class="section-intro reveal">AIM can be applied at different stages depending on where a team is in their AI workflow development.</p>
+    <div class="deployment-grid">
+
+      <div class="deploy-card reveal">
+        <div class="deploy-num">01</div>
+        <div class="deploy-title">Framework deployment / workflow review</div>
+        <div class="deploy-body">For teams that need to review an AI-enabled workflow, identify control gaps, and define decision points.</div>
+        <div class="deploy-outputs-label">Typical outputs</div>
+        <div class="deploy-outputs">Workflow map, action scoring, decision gates, stop points, governance recommendations, operating model.</div>
+      </div>
+
+      <div class="deploy-card reveal" style="transition-delay: 0.1s;">
+        <div class="deploy-num">02</div>
+        <div class="deploy-title">Prototype control tool</div>
+        <div class="deploy-body">For teams that want a repeatable control method before building software.</div>
+        <div class="deploy-outputs-label">Typical outputs</div>
+        <div class="deploy-outputs">Workbook, rules sheet, scenario library, reusable assessment method, templates.</div>
+      </div>
+
+      <div class="deploy-card reveal" style="transition-delay: 0.2s;">
+        <div class="deploy-num">03</div>
+        <div class="deploy-title">Operational embed / integration</div>
+        <div class="deploy-body">For organisations running live AI in regulated or high-risk workflows.</div>
+        <div class="deploy-outputs-label">Typical outputs</div>
+        <div class="deploy-outputs">Pre-action checks, hold and escalation handling, audit trail, exception flows, policy enforcement logic.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXAMPLE IN PRACTICE -->
+  <section class="example-section" id="example">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Example in practice</span></div>
+    <h2 class="section-title reveal">When a workflow <em>should stop</em></h2>
+    <p class="example-body reveal">
+      A marketing workflow prepares a customer segment, generates campaign content, runs compliance review, and then attempts to send externally.
+    </p>
+    <p class="example-body reveal" style="margin-top: -1.5rem;">
+      AIM can distinguish between:
+    </p>
+    <ul class="example-list reveal">
+      <li>a <strong>content step</strong> that proceeds with caution because it relies on a partial basis</li>
+      <li>a <strong>compliance step</strong> that is locally valid but raises a hold</li>
+      <li>a <strong>remediation step</strong> that is allowed while the hold is active</li>
+      <li>a <strong>final send step</strong> that must be blocked because the hold has not been cleared</li>
+    </ul>
+    <p class="example-closing reveal">
+      That matters because <strong>weak basis</strong>, <strong>false reassurance</strong>, <strong>unresolved specialist findings</strong>, and <strong>final execution risk</strong> are not the same problem. They need different responses.
+    </p>
+  </section>
+
+  <!-- WHAT AIM IS NOT -->
+  <section class="not-section" id="boundaries">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Clear boundaries</span></div>
+    <h2 class="section-title reveal">What AIM <em>is not</em></h2>
+    <ul class="not-list reveal">
+      <li>Not a generic AI policy</li>
+      <li>Not a retrospective audit only</li>
+      <li>Not a replacement for human accountability</li>
+      <li>Not a finished software platform</li>
+      <li>Not a promise of unrestricted automation</li>
+    </ul>
+    <div class="not-closing reveal">
+      AIM is a practical decision-control model that can be used now as a review method and prototype control tool, and later embedded more operationally where needed.
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="cta-section" id="contact">
+    <div class="section-label reveal" style="justify-content: center;"><div class="section-label-line"></div><span>The point of AIM</span></div>
+    <h2 class="section-title reveal">AI governance is not only about whether a system has been <em>approved in general</em></h2>
+    <p class="section-intro reveal">
+      It is also about whether a specific action is justified at the moment the system is about to take it. AIM is designed to make that visible, testable, and controllable.
+    </p>
+    <div class="cta-row reveal">
+      <a href="mailto:enquiry@accountableai.uk?subject=AIM%20Framework%20Enquiry" class="btn-primary">Start a conversation</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Accountable <span>AI</span></div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#privacy">Privacy</a></li>
+      <li><a href="mailto:enquiry@accountableai.uk">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Accountable AI. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
