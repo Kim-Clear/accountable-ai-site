@@ -211,6 +211,89 @@
       animation: fadeUp 0.8s 0.3s ease both;
     }
 
+    /* ── AUDIT ── */
+    .audit-section {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .audit-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: flex-start;
+      margin-top: 2.8rem;
+    }
+
+    .audit-map-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .audit-map {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .audit-map li {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.55;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .audit-map li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 5px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    .audit-note {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.75;
+    }
+
+    .audit-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .audit-outcome-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .audit-outcome-body {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.75;
+    }
+
+    .audit-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 860px) {
+      .audit-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
     /* ── PACKAGES ── */
     .packages-section {
       border-bottom: 1px solid var(--border);
@@ -486,6 +569,40 @@
       If something AI-assisted is sent, decided, or actioned — who owns the outcome?
     </p>
   </div>
+
+  <!-- AI USE AUDIT -->
+  <section id="audit" class="audit-section">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span>Starting point</span>
+    </div>
+    <h2 class="section-title reveal">AI Use Audit — £195</h2>
+    <p class="section-intro reveal">A short, structured review of how AI is currently used across your organisation.</p>
+
+    <div class="audit-layout">
+      <div class="reveal">
+        <p class="audit-map-label">We map</p>
+        <ul class="audit-map">
+          <li>where AI is being used in day-to-day workflows</li>
+          <li>what decisions it is influencing</li>
+          <li>where accountability is unclear or undefined</li>
+        </ul>
+        <p class="audit-note">This is not a full audit or compliance exercise — it is a clear view of your current position.</p>
+      </div>
+
+      <div class="audit-right reveal">
+        <div>
+          <span class="audit-outcome-label">Outcome</span>
+          <p class="audit-outcome-body">A concise written summary highlighting where your AI use is visible, where ownership is unclear, and where exposure may exist.</p>
+        </div>
+        <hr class="audit-divider" />
+        <div>
+          <p class="audit-outcome-body">Used to establish a clear starting point before making decisions about control, policy, or governance.</p>
+        </div>
+        <a href="mailto:kim@accountableai.uk?subject=AI Use Audit" class="btn-primary">Start with AI Use Audit</a>
+      </div>
+    </div>
+  </section>
 
   <!-- PACKAGES -->
   <section class="packages-section">
