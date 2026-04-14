@@ -271,7 +271,10 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 1.6rem;
+    }
+
+    .package-includes-wrap {
+      flex: 1;
     }
 
     .package-includes-label {
@@ -311,6 +314,7 @@
       background: var(--page-alt);
       border: 1px solid var(--border);
       padding: 1.2rem 1.4rem;
+      margin-top: 1.4rem;
     }
 
     .package-outcome-label {
@@ -331,13 +335,11 @@
     .package-card-footer {
       padding: 1.6rem 2rem;
       border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
     }
 
-    .package-note {
-      font-size: 0.8rem;
+    .packages-grid-note {
+      margin-top: 1.6rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -504,7 +506,7 @@
           <p class="package-desc">Clarity on current AI use and immediate guardrails.</p>
         </div>
         <div class="package-card-body">
-          <div>
+          <div class="package-includes-wrap">
             <p class="package-includes-label">Includes</p>
             <ul class="package-includes">
               <li>AI Use Audit</li>
@@ -530,7 +532,7 @@
           <p class="package-desc">Alignment across teams using AI in day-to-day workflows.</p>
         </div>
         <div class="package-card-body">
-          <div>
+          <div class="package-includes-wrap">
             <p class="package-includes-label">Includes</p>
             <ul class="package-includes">
               <li>AI Use Audit</li>
@@ -557,7 +559,7 @@
           <p class="package-desc">For organisations where AI is influencing real decisions.</p>
         </div>
         <div class="package-card-body">
-          <div>
+          <div class="package-includes-wrap">
             <p class="package-includes-label">Includes</p>
             <ul class="package-includes">
               <li>AI Defensibility Review</li>
@@ -572,11 +574,11 @@
         </div>
         <div class="package-card-footer">
           <a href="mailto:kim@accountableai.uk?subject=Decision Control" class="btn-primary">Start here</a>
-          <p class="package-note">Also delivered as a standalone engagement where appropriate.</p>
         </div>
       </div>
 
     </div>
+    <p class="packages-grid-note">Decision Control is also delivered as a standalone engagement where appropriate.</p>
   </section>
 
   <!-- CTA -->
