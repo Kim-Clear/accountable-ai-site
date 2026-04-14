@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Accountable AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0b0f1f;
+      --navy-mid: #141929;
+      --gold: #c8a96e;
+      --gold-light: #e2c99a;
+      --gold-deep: #8a6820;
+      --page-bg: #f5f2ec;
+      --page-alt: #eceae3;
+      --text: #0d1120;
+      --text-body: rgba(13,17,32,0.72);
+      --text-muted: rgba(13,17,32,0.54);
+      --border: rgba(13,17,32,0.09);
+      --border-gold: rgba(200,169,110,0.35);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 4rem;
+      border-bottom: 1px solid rgba(200,169,110,0.12);
+      backdrop-filter: blur(12px);
+      background: rgba(11,15,31,0.92);
+      animation: fadeDown 0.8s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: #f4efe6;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244,239,230,0.55);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 0.55rem 1.2rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.25s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: var(--navy);
+      color: #f4efe6;
+      padding: 0.75rem 1.7rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: var(--sans);
+      display: inline-block;
+      transition: background 0.25s;
+    }
+    .btn-primary:hover { background: #1e2540; }
+
+    .btn-primary-light {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.75rem 1.7rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: var(--sans);
+      display: inline-block;
+      transition: background 0.25s;
+    }
+    .btn-primary-light:hover { background: var(--gold-light); }
+
+    .btn-ghost {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(13,17,32,0.25);
+      padding-bottom: 2px;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .btn-ghost:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+
+    .text-link-light {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s;
+    }
+    .text-link-light:hover { border-color: var(--gold); }
+
+    /* ── SECTIONS ── */
+    section { padding: 4rem 4rem; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .section-label span {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .section-label-line { width: 28px; height: 1px; background: var(--gold); opacity: 0.55; }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold-deep); }
+
+    .section-intro {
+      font-size: 0.98rem;
+      color: var(--text-body);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 8rem 4rem 4rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 860px;
+    }
+
+    .page-hero .section-title {
+      margin-bottom: 1.4rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .page-hero .section-intro {
+      animation: fadeUp 0.8s 0.2s ease both;
+      max-width: 600px;
+    }
+
+    .page-hero-question {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-top: 1.4rem;
+      border-left: 2px solid rgba(200,169,110,0.55);
+      padding-left: 1rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    /* ── PACKAGES ── */
+    .packages-section {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .package-card {
+      border: 1px solid var(--border);
+      background: var(--page-bg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .package-card-header {
+      padding: 2rem 2rem 1.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .package-tier {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .package-name {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .package-price {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .package-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .package-card-body {
+      padding: 1.8rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .package-includes-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .package-includes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .package-includes li {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      line-height: 1.5;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .package-includes li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 5px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    .package-outcome {
+      background: var(--page-alt);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.4rem;
+    }
+
+    .package-outcome-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .package-outcome p {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    .package-card-footer {
+      padding: 1.6rem 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .package-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Highlight card for featured package */
+    .package-card.featured {
+      border-color: var(--border-gold);
+      background: #fff;
+    }
+    .package-card.featured .package-card-header {
+      border-bottom-color: var(--border-gold);
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--navy);
+      border-top: 1px solid rgba(200,169,110,0.12);
+      text-align: center;
+      padding: 4rem 4rem;
+    }
+
+    .cta-section .section-title {
+      color: #f4efe6;
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-section .section-intro {
+      color: rgba(244,239,230,0.65);
+      margin: 0 auto 2.8rem;
+    }
+
+    .cta-contact {
+      font-size: 0.92rem;
+      color: rgba(244,239,230,0.55);
+      line-height: 2;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--page-bg);
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .footer-logo span { color: var(--gold-deep); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--gold-deep); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal.animate {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .reveal.animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .page-hero { padding: 7rem 1.5rem 3rem; }
+
+      section { padding: 3rem 1.5rem; }
+
+      .packages-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section { padding: 4rem 1.5rem; }
+
+      footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Accountable <span>AI</span></a>
+    <ul class="nav-links">
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a href="mailto:kim@accountableai.uk" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Services</span>
+    </div>
+    <h1 class="section-title">Services</h1>
+    <p class="section-intro">
+      AI is already shaping decisions across most organisations.<br/>
+      In many cases, those decisions cannot be clearly explained, owned, or defended.<br/>
+      That gap is where risk sits.
+    </p>
+    <p class="page-hero-question">
+      If something AI-assisted is sent, decided, or actioned — who owns the outcome?
+    </p>
+  </div>
+
+  <!-- PACKAGES -->
+  <section class="packages-section">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span>Packages</span>
+    </div>
+    <h2 class="section-title reveal">Choose your starting point</h2>
+
+    <div class="packages-grid">
+
+      <!-- Establish Position -->
+      <div class="package-card reveal" id="establish">
+        <div class="package-card-header">
+          <span class="package-tier">Establish Position</span>
+          <div class="package-name">Establish Position</div>
+          <div class="package-price">£295</div>
+          <p class="package-desc">Clarity on current AI use and immediate guardrails.</p>
+        </div>
+        <div class="package-card-body">
+          <div>
+            <p class="package-includes-label">Includes</p>
+            <ul class="package-includes">
+              <li>AI Use Audit</li>
+              <li>Standard AI Accountability Policy</li>
+            </ul>
+          </div>
+          <div class="package-outcome">
+            <span class="package-outcome-label">Outcome</span>
+            <p>You understand where AI is being used and where accountability is unclear.</p>
+          </div>
+        </div>
+        <div class="package-card-footer">
+          <a href="mailto:kim@accountableai.uk?subject=Establish Position" class="btn-primary">Start here</a>
+        </div>
+      </div>
+
+      <!-- Operational Control -->
+      <div class="package-card featured reveal" id="operational">
+        <div class="package-card-header">
+          <span class="package-tier">Operational Control</span>
+          <div class="package-name">Operational Control</div>
+          <div class="package-price">£595</div>
+          <p class="package-desc">Alignment across teams using AI in day-to-day workflows.</p>
+        </div>
+        <div class="package-card-body">
+          <div>
+            <p class="package-includes-label">Includes</p>
+            <ul class="package-includes">
+              <li>AI Use Audit</li>
+              <li>Team Workshop (2 hours)</li>
+              <li>Standard AI Accountability Policy</li>
+            </ul>
+          </div>
+          <div class="package-outcome">
+            <span class="package-outcome-label">Outcome</span>
+            <p>AI use is visible, understood, and consistently applied across teams.</p>
+          </div>
+        </div>
+        <div class="package-card-footer">
+          <a href="mailto:kim@accountableai.uk?subject=Operational Control" class="btn-primary">Start here</a>
+        </div>
+      </div>
+
+      <!-- Decision Control -->
+      <div class="package-card reveal" id="decision">
+        <div class="package-card-header">
+          <span class="package-tier">Decision Control</span>
+          <div class="package-name">Decision Control</div>
+          <div class="package-price">£950</div>
+          <p class="package-desc">For organisations where AI is influencing real decisions.</p>
+        </div>
+        <div class="package-card-body">
+          <div>
+            <p class="package-includes-label">Includes</p>
+            <ul class="package-includes">
+              <li>AI Defensibility Review</li>
+              <li>AI Use Audit</li>
+              <li>Tailored AI Accountability Policy</li>
+            </ul>
+          </div>
+          <div class="package-outcome">
+            <span class="package-outcome-label">Outcome</span>
+            <p>AI-influenced decisions are clear, owned, and defensible.</p>
+          </div>
+        </div>
+        <div class="package-card-footer">
+          <a href="mailto:kim@accountableai.uk?subject=Decision Control" class="btn-primary">Start here</a>
+          <p class="package-note">Also delivered as a standalone engagement where appropriate.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="cta-section">
+    <div class="section-label reveal" style="justify-content: center;">
+      <div class="section-label-line" style="background: rgba(200,169,110,0.5);"></div>
+      <span style="color: rgba(200,169,110,0.7);">Get started</span>
+      <div class="section-label-line" style="background: rgba(200,169,110,0.5);"></div>
+    </div>
+    <h2 class="section-title reveal">Not sure where to start?</h2>
+    <p class="section-intro reveal">Most organisations begin with a short audit to understand where AI is already influencing decisions.</p>
+    <div class="reveal" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+      <a href="mailto:kim@accountableai.uk?subject=AI Use Audit" class="btn-primary-light">Start with the AI Use Audit (£195)</a>
+      <a href="mailto:kim@accountableai.uk?subject=Defensibility Review" class="text-link-light">Book a Defensibility Review</a>
+    </div>
+    <div class="cta-contact reveal" style="margin-top: 2rem;">
+      No upfront commitment.&nbsp;&nbsp;·&nbsp;&nbsp;Short written outputs provided within 3 working days.
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Accountable <span>AI</span></div>
+    <ul class="footer-links">
+      <li><a href="index.html#privacy">Privacy</a></li>
+      <li><a href="https://www.linkedin.com/in/kimstevensbiolife/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Accountable AI. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      revealEls.forEach(el => el.classList.add('animate'));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => observer.observe(el));
+    }
+  </script>
+</body>
+</html>

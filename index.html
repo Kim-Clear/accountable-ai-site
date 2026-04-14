@@ -155,8 +155,18 @@
       line-height: 1.75;
       color: var(--text-body);
       max-width: 520px;
-      margin-bottom: 2.4rem;
+      margin-bottom: 1.4rem;
       animation: fadeUp 0.8s 0.35s ease both;
+    }
+
+    .hero-question {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2.4rem;
+      animation: fadeUp 0.8s 0.45s ease both;
+      border-left: 2px solid rgba(200,169,110,0.55);
+      padding-left: 1rem;
     }
 
     .hero-actions {
@@ -257,6 +267,52 @@
       color: var(--text-body);
       line-height: 1.8;
       max-width: 560px;
+    }
+
+    /* ── WHERE ARE YOU NOW ── */
+    .where-section {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .where-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.8rem;
+      max-width: 900px;
+    }
+
+    .where-card {
+      border: 1px solid var(--border);
+      padding: 2rem 1.8rem;
+      background: var(--page-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .where-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      flex: 1;
+    }
+
+    .where-card a {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s;
+      align-self: flex-start;
+    }
+    .where-card a:hover { border-bottom-color: var(--gold-deep); }
+
+    @media (max-width: 860px) {
+      .where-grid { grid-template-columns: 1fr; }
     }
 
     /* ── PROBLEM ── */
@@ -640,10 +696,10 @@
   <nav>
     <a href="#" class="nav-logo">Accountable <span>AI</span></a>
     <ul class="nav-links">
-      <li><a href="#offer">Defensibility Review</a></li>
+      <li><a href="services.html">Services</a></li>
       <li><a href="#about">About</a></li>
     </ul>
-    <a href="mailto:kim@accountableai.uk" class="nav-cta">Get in touch</a>" class="nav-cta">Get in touch</a>
+    <a href="mailto:kim@accountableai.uk" class="nav-cta">Get in touch</a>
   </nav>
 
   <!-- HERO -->
@@ -657,11 +713,16 @@
         AI decisions you can<br/><em>stand behind</em>
       </h1>
       <p class="hero-sub">
-        I help organisations understand whether the way they are using AI would actually hold up if they had to explain it — to clients, regulators, or internal leadership.
+        Most organisations using AI cannot clearly explain the decisions it's influencing — or who owns them.
+      </p>
+      <p class="hero-question">
+        If something AI-assisted is sent or actioned — who owns the outcome?
       </p>
       <div class="hero-actions">
-        <a href="#offer" class="btn-primary">Arrange a Defensibility Review</a>
-        <a href="#offer" class="btn-ghost">See how it works</a>
+        <a href="services.html#establish" class="btn-primary">
+        Start with an AI Use Audit (£195)
+        </a>
+        <a href="mailto:kim@accountableai.uk" class="btn-ghost">Or Book a Short Call</a>
       </div>
     </div>
 
@@ -669,6 +730,30 @@
       <div class="portrait-wrap">
         <img src="kim-stevens-profile.PNG" alt="Kim Stevens, Accountable AI" class="portrait-img" />
         <span class="portrait-name">Kim Stevens</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE ARE YOU NOW -->
+  <section id="where" class="where-section">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span>Where are you right now?</span>
+    </div>
+    <h2 class="section-title reveal">Where are you right now?</h2>
+
+    <div class="where-grid">
+      <div class="where-card reveal">
+        <p>We're using AI, but it's not formally reviewed</p>
+        <a href="services.html#establish">Start with AI Use Audit</a>
+      </div>
+      <div class="where-card reveal">
+        <p>AI is being used across the team</p>
+        <a href="services.html#operational">View Operational Control</a>
+      </div>
+      <div class="where-card reveal">
+        <p>AI is influencing real decisions or outputs</p>
+        <a href="services.html#decision">Start with Decision Control</a>
       </div>
     </div>
   </section>
@@ -854,16 +939,14 @@
       <span style="color: rgba(200,169,110,0.7);">Get started</span>
       <div class="section-label-line" style="background: rgba(200,169,110,0.5);"></div>
     </div>
-    <h2 class="section-title reveal">Ready to understand your exposure?</h2>
-    <p class="section-intro reveal">A Defensibility Review takes 90 minutes and gives you a clear view of where your AI use would and would not hold up. Get in touch to arrange one.</p>
-    <div class="reveal" style="margin-top: 2rem;">
-   <div class="reveal" style="margin-top: 2rem;">
-  <a href="mailto:kim@accountableai.uk" class="btn-primary-light">Arrange a Defensibility Review</a>
-</div>
+    <h2 class="section-title reveal">Not sure where to start?</h2>
+    <p class="section-intro reveal">Most organisations begin with a short audit to understand where AI is already influencing decisions.</p>
+    <div class="reveal" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+      <a href="services.html" class="btn-primary-light">Start with the AI Use Audit (£195)</a>
+      <a href="mailto:kim@accountableai.uk" class="text-link-light">Book a Defensibility Review</a>
+    </div>
     <div class="cta-contact reveal" style="margin-top: 2rem;">
-      Prefer to message first? <a href="https://wa.me/447380356761" target="_blank" class="text-link-light">WhatsApp</a>
-      &nbsp;·&nbsp;
-      <a href="mailto:kim@accountableai.uk" class="nav-cta">Get in touch</a>
+      No upfront commitment.&nbsp;&nbsp;·&nbsp;&nbsp;Short written outputs provided within 3 working days.
     </div>
   </section>
 
