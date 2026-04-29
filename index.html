@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accountable AI — AI Defensibility Review</title>
+  <title>Accountable AI — AI Governance & Defensibility</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -640,6 +640,25 @@
       }
     }
 
+
+
+    /* ── GOVERNANCE / SERVICES / QUICK CHECK ── */
+    .governance-section { background: var(--page-alt); border-bottom: 1px solid var(--border); }
+    .governance-points, .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2.6rem; max-width: 1040px; }
+    .governance-card, .service-card { border: 1px solid var(--border); background: var(--page-bg); padding: 1.8rem 1.6rem; }
+    .governance-card h3, .service-card h3 { font-family: var(--serif); font-weight: 300; font-size: 1.25rem; color: var(--text); margin-bottom: 0.8rem; }
+    .governance-card p, .service-card p { font-size: 0.9rem; line-height: 1.65; color: var(--text-body); }
+    .services-section { border-bottom: 1px solid var(--border); }
+    .service-card.featured { background: #fff; border-color: var(--border-gold); }
+    .service-card a { display: inline-block; margin-top: 1.2rem; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-deep); text-decoration: none; font-weight: 500; }
+    .quick-check-section { background: var(--navy); color: #f4efe6; border-bottom: 1px solid rgba(200,169,110,0.12); }
+    .quick-check-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; max-width: 1040px; }
+    .quick-check-section .section-title { color: #f4efe6; }
+    .quick-check-section .section-intro { color: rgba(244,239,230,0.68); }
+    .quick-check-box { border: 1px solid rgba(200,169,110,0.35); padding: 2rem; background: rgba(255,255,255,0.03); }
+    .quick-check-box p { font-size: 0.92rem; line-height: 1.7; color: rgba(244,239,230,0.7); margin-bottom: 1.4rem; }
+    @media (max-width: 980px) { .governance-points, .services-grid { grid-template-columns: repeat(2, 1fr); } }
+
     /* ── MOBILE ── */
     @media (max-width: 860px) {
       nav { padding: 1rem 1.5rem; }
@@ -671,7 +690,10 @@
         gap: 2.5rem;
       }
 
-      .problem-grid {
+      .problem-grid,
+      .governance-points,
+      .services-grid,
+      .quick-check-layout {
         grid-template-columns: 1fr;
       }
 
@@ -697,6 +719,8 @@
     <a href="#" class="nav-logo">Accountable <span>AI</span></a>
     <ul class="nav-links">
       <li><a href="services.html">Services</a></li>
+      <li><a href="#governance">AI Governance</a></li>
+      <li><a href="#quick-check">AI Quick Check</a></li>
       <li><a href="#about">About</a></li>
     </ul>
     <a href="mailto:kim@accountableai.uk" class="nav-cta">Get in touch</a>
@@ -707,21 +731,21 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="eyebrow-line"></div>
-        <span>Decision accountability for AI use</span>
+        <span>AI governance & decision accountability</span>
       </div>
       <h1 class="hero-headline">
         AI decisions you can<br/><em>stand behind</em>
       </h1>
       <p class="hero-sub">
-        A client questions a recommendation. An auditor asks about your process. Leadership wants to know who checked it.<br/><br/>Most teams using AI in real work aren't ready for those questions.
+        Helping organisations adopt AI without losing visibility, accountability, or regulatory confidence.<br/><br/>AI tools are moving quickly into everyday work — from Copilot and ChatGPT to internal automation and decision-support systems. The question is no longer just whether AI is useful. It is whether its use can be explained, governed, and defended.
       </p>
       <p class="hero-question">
-        If something AI-assisted is challenged — who can stand behind it?
+        If your AI use was questioned tomorrow — by leadership, clients, or regulators — could you clearly defend it?
       </p>
       <div class="hero-actions">
         <div style="display: flex; flex-direction: column; gap: 0.7rem;">
-          <a href="https://calendly.com/kim-accountableai/30min" target="_blank" class="btn-primary">Book a Defensibility Review</a>
-          <span style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">For teams already using AI who want to understand where they stand before issues arise.</span>
+          <a href="https://calendly.com/kim-accountableai/30min" target="_blank" class="btn-primary">Explore services</a>
+          <span style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">For organisations using AI who need clearer governance, ownership, and defensibility before issues arise.</span>
         </div>
         <a href="mailto:kim@accountableai.uk" class="btn-ghost">Or Book a Short Call</a>
       </div>
@@ -732,6 +756,34 @@
         <img src="kim-stevens-profile.PNG" alt="Kim Stevens, Accountable AI" class="portrait-img" />
         <span class="portrait-name">Kim Stevens</span>
       </div>
+    </div>
+  </section>
+
+
+
+  <!-- GOVERNANCE CONTEXT -->
+  <section id="governance" class="governance-section">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>Why this matters now</span></div>
+    <h2 class="section-title reveal">AI governance expectations are <em>tightening.</em></h2>
+    <p class="section-intro reveal">UK organisations are entering a new phase of AI accountability. As guidance around AI, personal data, and automated decision-making becomes clearer, businesses will need to show how AI is being used, what data it touches, what decisions it influences, and who remains accountable.</p>
+    <div class="governance-points">
+      <div class="governance-card reveal"><h3>Visibility</h3><p>Where is AI already being used across your organisation, formally or informally?</p></div>
+      <div class="governance-card reveal"><h3>Data responsibility</h3><p>What personal, client, staff, or commercially sensitive data may be entering AI tools?</p></div>
+      <div class="governance-card reveal"><h3>Decision ownership</h3><p>When AI influences a recommendation, communication, or action, who owns the outcome?</p></div>
+      <div class="governance-card reveal"><h3>Defensibility</h3><p>Could your process hold up if questioned by a client, regulator, auditor, or senior leader?</p></div>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section id="services-overview" class="services-section">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>How I help</span></div>
+    <h2 class="section-title reveal">Practical AI governance without <em>framework overload.</em></h2>
+    <p class="section-intro reveal">Support for organisations that need to move from informal AI use to clearer governance, ownership, and operational control.</p>
+    <div class="services-grid">
+      <div class="service-card reveal"><h3>AI Use Audit</h3><p>A concise review of where AI is being used, what it may be touching, and where accountability is unclear.</p><a href="services.html#establish">Start with visibility</a></div>
+      <div class="service-card featured reveal"><h3>AI Defensibility Review</h3><p>A focused review of real AI-supported decisions and whether they would hold up if challenged.</p><a href="services.html#audit">Review decision risk</a></div>
+      <div class="service-card reveal"><h3>Copilot Readiness</h3><p>Practical governance support for teams introducing Microsoft Copilot or similar workplace AI tools.</p><a href="services.html#operational">Prepare your rollout</a></div>
+      <div class="service-card reveal"><h3>Workshops & Policy</h3><p>Plain-English staff guidance, accountability policies, and workshops built around real operational use.</p><a href="services.html#operational">Build team control</a></div>
     </div>
   </section>
 
@@ -746,11 +798,11 @@
     <div class="where-grid">
       <div class="where-card reveal">
         <p>AI is being used — but no one has a clear view of where</p>
-        <a href="#offer">Book a Defensibility Review</a>
+        <a href="#offer">Explore services</a>
       </div>
       <div class="where-card reveal">
         <p>Outputs are reviewed — but ownership isn't clearly defined</p>
-        <a href="#offer">Book a Defensibility Review</a>
+        <a href="#offer">Explore services</a>
       </div>
       <div class="where-card reveal">
         <p>AI is influencing decisions — but no one has asked what happens if it's wrong</p>
@@ -766,10 +818,10 @@
       <span>The problem</span>
     </div>
     <h2 class="section-title reveal">
-      Most organisations aren't struggling to use AI.<br/>
-      They're struggling to <em>explain it.</em>
+      Most organisations are adopting AI faster than<br/>
+      they are <em>governing it.</em>
     </h2>
-    <p class="section-intro reveal">When something goes wrong, the questions come quickly — and most teams aren't ready for them.</p>
+    <p class="section-intro reveal">When AI touches data, informs decisions, or shapes client-facing work, the questions come quickly — and most teams are not yet ready for them.</p>
 
     <div class="problem-grid">
       <div class="problem-card reveal">
@@ -785,10 +837,10 @@
   <section id="offer" class="offer-section">
     <div class="section-label reveal">
       <div class="section-label-line"></div>
-      <span>Primary Service</span>
+      <span>Flagship Service</span>
     </div>
     <h2 class="section-title reveal">AI Defensibility Review</h2>
-    <p class="section-intro reveal">A focused working session for organisations using AI in real decisions. Not a full audit. Not a policy exercise. A practical review of whether your AI use would hold up if it was questioned.</p>
+    <p class="section-intro reveal">A focused working session for organisations using AI in real decisions. Practical AI governance support grounded in operational reality — looking at whether your AI use would hold up if questioned.</p>
 
     <div class="offer-layout">
       <div class="offer-left reveal">
@@ -925,7 +977,7 @@
           <p>That background shapes how I approach AI. I do not see it as a technology problem first, but as a decision and accountability problem. Who owns what. What happens when something is wrong. Whether the use of AI in a process would actually hold up if examined.</p>
           <p>I have also worked directly with AI tools in professional settings — including supporting the evaluation and rollout of Microsoft Copilot — and seen firsthand how the gap between everyday use and genuine oversight develops.</p>
           <p><span class="key-emphasis">Successful AI adoption is rarely just about the technology.</span> It is about understanding workflows, ownership, data, and the expectations around how tools should be used.</p>
-          <p>That is what the Defensibility Review is built to address.</p>
+          <p>That is what Accountable AI is built to address — from early AI use audits through to defensibility reviews, governance workshops, and practical accountability policies.</p>
           <p>That includes environments where expectations do not stop at one jurisdiction.</p>
         </div>
       </div>
@@ -946,6 +998,20 @@
   </section>
 
 
+
+
+  <!-- AI QUICK CHECK -->
+  <section id="quick-check" class="quick-check-section">
+    <div class="quick-check-layout">
+      <div>
+        <div class="section-label reveal"><div class="section-label-line"></div><span style="color: rgba(200,169,110,0.75);">Free resource</span></div>
+        <h2 class="section-title reveal">Not sure where your AI use stands?</h2>
+        <p class="section-intro reveal">The AI Use Quick Check is a short, plain-English starting point for organisations using tools like ChatGPT, Copilot, or AI-supported workflows. It helps surface where AI may already be touching data, influencing decisions, or creating unclear ownership.</p>
+      </div>
+      <div class="quick-check-box reveal"><p>Use it as a first step before a formal review, workshop, or governance conversation.</p><a href="downloads/download.html" class="btn-primary-light">Download the AI Use Quick Check</a></div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section id="contact" class="cta-section">
     <div class="section-label reveal" style="justify-content: center;">
@@ -954,10 +1020,10 @@
       <div class="section-label-line" style="background: rgba(200,169,110,0.5);"></div>
     </div>
     <h2 class="section-title reveal">Not sure where to start?</h2>
-    <p class="section-intro reveal">Most organisations begin with a short audit to understand where AI is already influencing decisions.</p>
+    <p class="section-intro reveal">Start with a short audit, a focused Defensibility Review, or a practical conversation about where AI is already creating governance exposure.</p>
     <div class="reveal" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
       <a href="https://calendly.com/kim-accountableai/30min" target="_blank" class="btn-primary-light">Book a Defensibility Review</a>
-      <a href="mailto:kim@accountableai.uk" class="text-link-light">Or get in touch directly</a>
+      <a href="services.html" class="text-link-light">View services</a>
     </div>
     <div class="cta-contact reveal" style="margin-top: 2rem;">
       No upfront commitment.&nbsp;&nbsp;·&nbsp;&nbsp;Short written outputs provided within 3 working days.
