@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU Cannabis × AI — Intelligence Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1a1a18;
+  --ink-mid: #4a4a46;
+  --ink-light: #8a8a84;
+  --ink-ghost: #c0bdb4;
+  --paper: #f7f5f0;
+  --paper-mid: #eeebe4;
+  --paper-warm: #e4e0d6;
+  --white: #ffffff;
+  --accent: #1a3a2a;
+  --accent-mid: #2d5c42;
+  --accent-light: #e4ede7;
+  --red: #7a1c1c;
+  --red-light: #f5eaea;
+  --amber: #6e4a0e;
+  --amber-light: #f5f0e6;
+  --blue: #162844;
+  --blue-light: #e6ecf4;
+  --rule: #d8d4ca;
+  --serif: 'Libre Baskerville', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── PRINT BUTTON ── */
+.print-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  padding: 10px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.print-bar-label { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: .05em; }
+.print-bar-btns { display: flex; gap: 10px; }
+.pbar-btn {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .15s;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: white;
+}
+.pbar-btn:hover { background: rgba(255,255,255,0.1); }
+.pbar-btn.primary { background: white; color: var(--ink); border-color: white; }
+.pbar-btn.primary:hover { background: var(--paper); }
+
+/* ── COVER PAGE ── */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.cover-accent {
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(45,92,66,0.15) 100%);
+  pointer-events: none;
+}
+.cover-inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 64px 72px;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: auto;
+}
+.cover-logo {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.cover-edition-badge {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 4px 12px;
+  border-radius: 3px;
+}
+.cover-mid {
+  padding: 80px 0 48px;
+}
+.cover-category {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #5aaf7a;
+  margin-bottom: 20px;
+}
+.cover-title {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: white;
+  margin-bottom: 8px;
+}
+.cover-title em { font-style: italic; color: #7acc96; }
+.cover-subtitle {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+  color: rgba(255,255,255,0.45);
+  margin-top: 12px;
+  line-height: 1.35;
+  max-width: 560px;
+}
+.cover-rule {
+  width: 60px;
+  height: 2px;
+  background: #2d5c42;
+  margin: 32px 0;
+}
+.cover-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.55);
+  max-width: 480px;
+  line-height: 1.6;
+}
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.cover-meta { display: flex; gap: 40px; }
+.cover-meta-item {}
+.cover-meta-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 4px;
+}
+.cover-meta-val {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+.cover-toc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  text-align: right;
+  line-height: 2;
+}
+.cover-toc span { color: rgba(255,255,255,0.5); }
+
+/* ── REPORT BODY ── */
+.report-body { max-width: 900px; margin: 0 auto; padding: 0 48px 80px; }
+
+/* ── EXEC SUMMARY ── */
+.exec-summary {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.exec-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+}
+.exec-title {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.25;
+}
+.exec-body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+  font-style: italic;
+  padding: 24px 32px;
+  border-left: 3px solid var(--accent-mid);
+  background: var(--accent-light);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 24px;
+}
+.exec-body p { margin-bottom: 12px; }
+.exec-body p:last-child { margin-bottom: 0; }
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+.highlight-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+.highlight-num {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.highlight-label {
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.4;
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 52px 0 0;
+}
+.section + .section {
+  border-top: 1px solid var(--rule);
+  margin-top: 48px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  gap: 24px;
+}
+.section-header-left { flex: 1; }
+.section-num {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.section-subtitle {
+  font-size: 13px;
+  color: var(--ink-mid);
+  font-family: var(--serif);
+  font-style: italic;
+}
+.section-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 3px;
+  margin-top: 4px;
+}
+.badge-reg { background: var(--blue-light); color: var(--blue); }
+.badge-enf { background: var(--red-light); color: var(--red); }
+.badge-inc { background: var(--amber-light); color: var(--amber); }
+.badge-mkt { background: var(--accent-light); color: var(--accent); }
+.badge-ins { background: #f0eef8; color: #3a2a6a; }
+.badge-cross { background: var(--paper-warm); color: var(--ink-mid); }
+
+/* ── FIELD BLOCKS ── */
+.field-block {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.field-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: 10px 18px 9px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.field-content {
+  padding: 16px 18px;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.field-content.placeholder {
+  color: var(--ink-ghost);
+  font-style: italic;
+}
+.field-content p { margin-bottom: 10px; }
+.field-content p:last-child { margin-bottom: 0; }
+
+/* ── ENTRY TABLE ── */
+.entry-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.entry-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: 8px 12px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.entry-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--paper-mid);
+  color: var(--ink-mid);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.entry-table tr:last-child td { border-bottom: none; }
+.entry-table td:first-child { color: var(--ink); font-weight: 500; }
+.entry-table td.placeholder { color: var(--ink-ghost); font-style: italic; }
+
+/* severity tags */
+.sev {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.sev-high { background: var(--red-light); color: var(--red); }
+.sev-med { background: var(--amber-light); color: var(--amber); }
+.sev-low { background: var(--paper-warm); color: var(--ink-light); }
+.sev-watch { background: var(--blue-light); color: var(--blue); }
+
+/* ── TWO-COL LAYOUT ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.two-col-wide { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+/* ── INSIGHT PULL QUOTE ── */
+.pull {
+  margin: 24px 0;
+  padding: 20px 24px;
+  border-left: 3px solid var(--rule);
+  background: var(--paper-mid);
+  border-radius: 0 6px 6px 0;
+}
+.pull-text {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.pull-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+/* ── SIGNAL MATRIX ── */
+.signal-matrix {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.matrix-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.matrix-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  border-bottom: 1px solid var(--paper-mid);
+}
+.matrix-row:last-child { border-bottom: none; }
+.matrix-cell {
+  padding: 10px 14px;
+  border-right: 1px solid var(--paper-mid);
+  line-height: 1.4;
+  vertical-align: top;
+  color: var(--ink-mid);
+}
+.matrix-cell:last-child { border-right: none; }
+.matrix-cell.head {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: 9px 14px;
+}
+.matrix-cell.company { font-weight: 500; color: var(--ink); }
+.matrix-cell.placeholder { color: var(--ink-ghost); font-style: italic; }
+
+/* ── SCORE BAR ── */
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 3px 0;
+}
+.score-track {
+  flex: 1;
+  height: 4px;
+  background: var(--paper-warm);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.score-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent-mid);
+}
+.score-val {
+  font-size: 11px;
+  color: var(--ink-light);
+  min-width: 24px;
+  text-align: right;
+}
+
+/* ── FOOTER ── */
+.report-footer {
+  margin-top: 64px;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--ink-light);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* ── PRINT ── */
+@media print {
+  .print-bar { display: none; }
+  .cover { min-height: auto; page-break-after: always; background: #1a1a18 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section + .section { page-break-before: auto; }
+  .field-block, .entry-table, .highlights { break-inside: avoid; }
+  body { background: white; }
+  .report-body { max-width: 100%; padding: 0 32px 48px; }
+}
+
+@media (max-width: 700px) {
+  .print-bar { padding: 10px 20px; }
+  .cover-inner { padding: 40px 28px; }
+  .cover-title { font-size: 36px; }
+  .cover-subtitle { font-size: 18px; }
+  .cover-meta { gap: 20px; flex-wrap: wrap; }
+  .cover-toc { display: none; }
+  .report-body { padding: 0 20px 60px; }
+  .two-col, .two-col-wide, .highlights { grid-template-columns: 1fr; }
+  .matrix-header, .matrix-row { grid-template-columns: 1.5fr 1fr 1fr; }
+  .matrix-cell:last-child { display: none; }
+  .section-header { flex-direction: column; }
+  .report-footer { flex-direction: column; gap: 6px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Print bar -->
+<div class="print-bar">
+  <span class="print-bar-label">EU Cannabis × AI — Intelligence Report Template</span>
+  <div class="print-bar-btns">
+    <button class="pbar-btn" onclick="clearPlaceholders()">Clear placeholders</button>
+    <button class="pbar-btn primary" onclick="window.print()">&#8595; Save as PDF</button>
+  </div>
+</div>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-accent"></div>
+  <div class="cover-inner">
+    <div class="cover-top">
+      <span class="cover-logo">Defensible AI Decisions</span>
+      <span class="cover-edition-badge" contenteditable="true">Edition 01 · H1 2026</span>
+    </div>
+    <div class="cover-mid">
+      <p class="cover-category">Intelligence Report</p>
+      <h1 class="cover-title">EU Cannabis<br><em>&times; Artificial</em><br><em>Intelligence</em></h1>
+      <p class="cover-subtitle" contenteditable="true">Regulatory signals, enforcement actions, market dynamics, and cross-sector implications for defensible AI decision-making.</p>
+      <div class="cover-rule"></div>
+      <p class="cover-desc" contenteditable="true">Add a 2–3 sentence framing statement for this edition — what's the dominant theme, what's changed since the last report, what should the reader pay attention to first.</p>
+    </div>
+    <div class="cover-bottom">
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Period covered</p>
+          <p class="cover-meta-val" contenteditable="true">January – June 2026</p>
+        </div>
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Published</p>
+          <p class="cover-meta-val" contenteditable="true">April 2026</p>
+        </div>
+        <div class="cover-meta-item">
+          <p class="cover-meta-label">Classification</p>
+          <p class="cover-meta-val" contenteditable="true">Client confidential</p>
+        </div>
+      </div>
+      <div class="cover-toc">
+        <span>01</span> Regulatory delta<br>
+        <span>02</span> Enforcement register<br>
+        <span>03</span> Incident analysis<br>
+        <span>04</span> Market landscape<br>
+        <span>05</span> Insurance pulse<br>
+        <span>06</span> Cross-sector read
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT BODY -->
+<div class="report-body">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="exec-summary">
+    <p class="exec-eyebrow">Executive summary</p>
+    <h2 class="exec-title" contenteditable="true">What matters this period — and why</h2>
+    <div class="exec-body">
+      <p contenteditable="true">Lead paragraph: The single most important development this period, stated plainly. What happened, what it means, and what operators should do about it. Write this last — it should distil the whole report into 3–4 sentences.</p>
+      <p contenteditable="true">Supporting paragraph: The second-order implication. What does the lead development signal about where the market is heading in the next 6–12 months? This is where your cross-sector thesis lives.</p>
+    </div>
+    <div class="highlights">
+      <div class="highlight-card">
+        <p class="highlight-num" style="color: var(--blue);" contenteditable="true">—</p>
+        <p class="highlight-label" contenteditable="true">Key regulatory developments tracked this period</p>
+      </div>
+      <div class="highlight-card">
+        <p class="highlight-num" style="color: var(--red);" contenteditable="true">—</p>
+        <p class="highlight-label" contenteditable="true">Enforcement actions or case law developments</p>
+      </div>
+      <div class="highlight-card">
+        <p class="highlight-num" style="color: var(--accent-mid);" contenteditable="true">—</p>
+        <p class="highlight-label" contenteditable="true">New AI products or company moves tracked</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: REGULATORY DELTA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-header-left">
+        <p class="section-num">Section 01</p>
+        <h2 class="section-title">Regulatory delta</h2>
+        <p class="section-subtitle">What changed, what's coming, what it means for "defensible"</p>
+      </div>
+      <span class="section-badge badge-reg">Regulatory</span>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Period overview</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>Summarise the regulatory environment this period in 3–5 sentences. What was the dominant theme — acceleration, retrenchment, clarification? Which jurisdiction moved most? What's the headline change that every operator needs to know?</p>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Key developments — ranked by operator impact</p>
+      <table class="entry-table">
+        <thead>
+          <tr>
+            <th>Development</th>
+            <th>Jurisdiction</th>
+            <th>Impact</th>
+            <th>Operator action required</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">Development name or legislation reference</td>
+            <td class="placeholder" contenteditable="true">DE / NL / EU-wide</td>
+            <td><span class="sev sev-high">High</span></td>
+            <td class="placeholder" contenteditable="true">What operators must do or assess in response</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Development name or legislation reference</td>
+            <td class="placeholder" contenteditable="true">DE / NL / EU-wide</td>
+            <td><span class="sev sev-high">High</span></td>
+            <td class="placeholder" contenteditable="true">What operators must do or assess in response</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Development name or legislation reference</td>
+            <td class="placeholder" contenteditable="true">DE / NL / EU-wide</td>
+            <td><span class="sev sev-med">Medium</span></td>
+            <td class="placeholder" contenteditable="true">What operators must do or assess in response</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Development name or legislation reference</td>
+            <td class="placeholder" contenteditable="true">DE / NL / EU-wide</td>
+            <td><span class="sev sev-watch">Watch</span></td>
+            <td class="placeholder" contenteditable="true">What operators must do or assess in response</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Development name or legislation reference</td>
+            <td class="placeholder" contenteditable="true">DE / NL / EU-wide</td>
+            <td><span class="sev sev-low">Low</span></td>
+            <td class="placeholder" contenteditable="true">What operators must do or assess in response</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">What this means for "defensible"</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>How have the regulatory changes this period shifted what "defensible AI decision" means in the EU cannabis context? Which documentation requirements tightened? Which liability thresholds moved? Be specific about the practical change to the standard.</p>
+        </div>
+      </div>
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">Forward look — next 6 months</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>What regulatory moves are expected or likely in the next reporting period? List specific dates, pending legislation, or likely enforcement signals to watch. Flag any that could be disruptive.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="pull-text" contenteditable="true">"Pull out the single most important regulatory insight of the period here — the sentence a client would want to quote in a board update."</p>
+      <p class="pull-label">Key insight — regulatory delta</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: ENFORCEMENT & CASE REGISTER -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-header-left">
+        <p class="section-num">Section 02</p>
+        <h2 class="section-title">Enforcement &amp; case register</h2>
+        <p class="section-subtitle">Actions, decisions, and what documentation gaps they exposed</p>
+      </div>
+      <span class="section-badge badge-enf">Enforcement</span>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Period overview</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>How active was enforcement this period? Were any precedent-setting decisions issued? If enforcement was quiet, say so and explain why — and what that signals about the pipeline ahead. The August 2026 AI Act deadline means enforcement acceleration is coming.</p>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Enforcement action log</p>
+      <table class="entry-table">
+        <thead>
+          <tr>
+            <th>Action / case</th>
+            <th>Authority</th>
+            <th>Status</th>
+            <th>Significance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">Case or action reference</td>
+            <td class="placeholder" contenteditable="true">BfDI / AP / CNIL</td>
+            <td><span class="sev sev-high">Decided</span></td>
+            <td class="placeholder" contenteditable="true">What documentation gap or liability question this exposed</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Case or action reference</td>
+            <td class="placeholder" contenteditable="true">BfDI / AP / CNIL</td>
+            <td><span class="sev sev-med">Pending</span></td>
+            <td class="placeholder" contenteditable="true">What documentation gap or liability question this exposed</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Case or action reference</td>
+            <td class="placeholder" contenteditable="true">BfDI / AP / CNIL</td>
+            <td><span class="sev sev-watch">Watch</span></td>
+            <td class="placeholder" contenteditable="true">What documentation gap or liability question this exposed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Liability allocation — what the cases reveal</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>The critical analytical layer: across the cases logged above, how is liability being allocated between AI developers, platform deployers, and clinicians? Is the deployer-becomes-provider principle being tested? What does the burden of proof look like in practice? This section is what separates intelligence from news aggregation.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">Documentation most commonly requested</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>Based on enforcement actions and disclosed investigations, what documentation are regulators asking for first? Risk management files? Audit logs? Human oversight protocols? Training data provenance? Rank these by frequency of appearance.</p>
+        </div>
+      </div>
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">Pipeline — cases to watch</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>List pending cases, open investigations, or regulatory signals that suggest enforcement in the next period. Flag any that could set significant precedent for the deployer/provider distinction or the causation presumption.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="pull-text" contenteditable="true">"The single most important thing the enforcement record tells us this period — about what regulators are prioritising, and what defensibility actually requires."</p>
+      <p class="pull-label">Key insight — enforcement</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: INCIDENT ANALYSIS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-header-left">
+        <p class="section-num">Section 03</p>
+        <h2 class="section-title">Incident analysis</h2>
+        <p class="section-subtitle">Adverse events, near-misses, and root cause categorisation</p>
+      </div>
+      <span class="section-badge badge-inc">Incidents</span>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Period overview</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>How many incidents were tracked this period? What was the dominant category — patient harm, data breach, platform failure, media investigation? If the period was quiet, note it and flag whether that reflects genuinely low incident rate or poor reporting infrastructure. The latter is common in cannabis AI.</p>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Incident register</p>
+      <table class="entry-table">
+        <thead>
+          <tr>
+            <th>Incident</th>
+            <th>Category</th>
+            <th>Severity</th>
+            <th>Root cause classification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">Incident description — platform, event, date</td>
+            <td class="placeholder" contenteditable="true">Patient harm / Data / Platform / Media</td>
+            <td><span class="sev sev-high">Critical</span></td>
+            <td class="placeholder" contenteditable="true">AI failure / Human oversight failure / Process gap / Unknown</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Incident description — platform, event, date</td>
+            <td class="placeholder" contenteditable="true">Patient harm / Data / Platform / Media</td>
+            <td><span class="sev sev-med">High</span></td>
+            <td class="placeholder" contenteditable="true">AI failure / Human oversight failure / Process gap / Unknown</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Incident description — platform, event, date</td>
+            <td class="placeholder" contenteditable="true">Patient harm / Data / Platform / Media</td>
+            <td><span class="sev sev-low">Medium</span></td>
+            <td class="placeholder" contenteditable="true">AI failure / Human oversight failure / Process gap / Unknown</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Root cause analysis — period patterns</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>Across the incidents logged, what patterns emerge in root cause? Are failures predominantly in the AI model itself, in human oversight processes, or in documentation and process gaps? Is the same type of failure recurring across different platforms? This is your most proprietary analytical layer — patterns across incidents that no individual operator can see.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">Downstream consequences tracked</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>For incidents from prior periods — what were the downstream consequences? Regulatory investigation triggered? Insurance claim filed? Litigation commenced? Track the lifecycle of incidents, not just the initial event.</p>
+        </div>
+      </div>
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">Near-misses and emerging risks</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>What situations fell short of a reportable incident but signal fragility? Media investigations without a specific complaint. Regulatory consultations about a particular AI use case. Platform changes that suggest internal incident responses. These are the early warning signals.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="pull-text" contenteditable="true">"What the incident record tells us that no individual operator can see from inside their own platform — the systemic pattern."</p>
+      <p class="pull-label">Key insight — incidents</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: MARKET LANDSCAPE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-header-left">
+        <p class="section-num">Section 04</p>
+        <h2 class="section-title">Market landscape</h2>
+        <p class="section-subtitle">Who's deploying AI, what they're claiming, where the gaps are</p>
+      </div>
+      <span class="section-badge badge-mkt">Market</span>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Period overview</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>What was the dominant market dynamic this period? New entrants, consolidation, governance maturation, or claim escalation? What's the gap between what operators are saying publicly about AI safety and what their observable governance posture suggests?</p>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Company AI governance tracker</p>
+      <div class="signal-matrix">
+        <div class="matrix-header">
+          <div class="matrix-cell head">Company / platform</div>
+          <div class="matrix-cell head">AI claims</div>
+          <div class="matrix-cell head">Governance signals</div>
+          <div class="matrix-cell head">Gap assessment</div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell company" contenteditable="true">Company name</div>
+          <div class="matrix-cell placeholder" contenteditable="true">What they claim publicly about AI safety / compliance</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Hires, certifications, policies observed</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Distance between claim and observable governance maturity</div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell company" contenteditable="true">Company name</div>
+          <div class="matrix-cell placeholder" contenteditable="true">What they claim publicly about AI safety / compliance</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Hires, certifications, policies observed</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Distance between claim and observable governance maturity</div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell company" contenteditable="true">Company name</div>
+          <div class="matrix-cell placeholder" contenteditable="true">What they claim publicly about AI safety / compliance</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Hires, certifications, policies observed</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Distance between claim and observable governance maturity</div>
+        </div>
+        <div class="matrix-row">
+          <div class="matrix-cell company" contenteditable="true">Company name</div>
+          <div class="matrix-cell placeholder" contenteditable="true">What they claim publicly about AI safety / compliance</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Hires, certifications, policies observed</div>
+          <div class="matrix-cell placeholder" contenteditable="true">Distance between claim and observable governance maturity</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">Notable launches &amp; M&amp;A</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>New AI products launched in EU cannabis this period. M&A deals involving AI platforms — what governance due diligence was visible, if any. Partnerships between cannabis operators and AI developers. Any white-labelling arrangements that create deployer-becomes-provider risk.</p>
+        </div>
+      </div>
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">Hiring signals</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>Senior AI governance, compliance, or ethics hires at cannabis AI platforms — these signal governance maturation. Conversely, absence of such hires at platforms making strong AI safety claims is itself a signal. Note specific roles and what they imply about internal governance build-out.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="pull-text" contenteditable="true">"The market landscape insight — the gap between public AI claims and observable governance reality, and what that means for the sector's liability exposure."</p>
+      <p class="pull-label">Key insight — market</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5: INSURANCE MARKET PULSE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-header-left">
+        <p class="section-num">Section 05</p>
+        <h2 class="section-title">Insurance market pulse</h2>
+        <p class="section-subtitle">Coverage movements, exclusions, and what underwriters are requiring</p>
+      </div>
+      <span class="section-badge badge-ins">Insurance</span>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Period overview</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>Is the insurance market moving toward exclusion, toward affirmative AI cover, or remaining ambiguous? What's the dominant dynamic this period — carriers pulling back, specialist products emerging, underwriting criteria tightening? The insurance market is a leading indicator of how sophisticated capital views AI governance risk.</p>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Coverage developments log</p>
+      <table class="entry-table">
+        <thead>
+          <tr>
+            <th>Development</th>
+            <th>Type</th>
+            <th>Operator implication</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">Insurer / product / clause</td>
+            <td><span class="sev sev-high">Exclusion</span></td>
+            <td class="placeholder" contenteditable="true">What this means for cannabis AI operators' coverage position</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Insurer / product / clause</td>
+            <td><span class="sev sev-watch">New product</span></td>
+            <td class="placeholder" contenteditable="true">What this means for cannabis AI operators' coverage position</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">Insurer / product / clause</td>
+            <td><span class="sev sev-med">Tightening</span></td>
+            <td class="placeholder" contenteditable="true">What this means for cannabis AI operators' coverage position</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">What underwriters are requiring</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>Based on available underwriting criteria and broker intelligence: what governance documentation is now required or strongly expected for AI cover? AI system registers? Risk management files? Human oversight protocols? Incident reporting processes? This is your governance benchmark — translate underwriting criteria directly into client advisory.</p>
+        </div>
+      </div>
+      <div class="field-block" style="margin-bottom:0">
+        <p class="field-label">The coverage gap — current state</p>
+        <div class="field-content placeholder" contenteditable="true">
+          <p>Map the current gap: what AI-related harms are covered under existing cyber and GL policies, what is now excluded, and what remains in ambiguous "silent AI" territory. For cannabis medical AI specifically — is patient harm from AI recommendations covered? By whom?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="pull-text" contenteditable="true">"The insurance insight — how the market is pricing AI governance risk, and what that tells operators about where the liability really sits."</p>
+      <p class="pull-label">Key insight — insurance</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: CROSS-SECTOR SIGNAL READ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-header-left">
+        <p class="section-num">Section 06</p>
+        <h2 class="section-title">Cross-sector signal read</h2>
+        <p class="section-subtitle">What the cannabis AI market tells us about where adjacent sectors are heading</p>
+      </div>
+      <span class="section-badge badge-cross">Cross-sector</span>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">The transfer thesis — this period</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>This is the section that justifies tracking a niche market for a cross-sector audience. What happened in EU cannabis AI this period that previews dynamics your clients in digital health, insurtech, or regulated pharma will encounter? Be specific — which enforcement pattern, incident type, or governance gap is most likely to recur upstream?</p>
+      </div>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">Sector-by-sector forward read</p>
+      <table class="entry-table">
+        <thead>
+          <tr>
+            <th>Adjacent sector</th>
+            <th>Cannabis signal</th>
+            <th>Estimated lag</th>
+            <th>What to watch for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Digital health &amp; medtech</td>
+            <td class="placeholder" contenteditable="true">Which cannabis AI development is the clearest preview for this sector?</td>
+            <td class="placeholder" contenteditable="true">12–24 months</td>
+            <td class="placeholder" contenteditable="true">The specific trigger that will move this sector into the same dynamic</td>
+          </tr>
+          <tr>
+            <td>Insurtech &amp; AI underwriting</td>
+            <td class="placeholder" contenteditable="true">Which cannabis AI development is the clearest preview for this sector?</td>
+            <td class="placeholder" contenteditable="true">12–18 months</td>
+            <td class="placeholder" contenteditable="true">The specific trigger that will move this sector into the same dynamic</td>
+          </tr>
+          <tr>
+            <td>Regulated pharma &amp; clinical AI</td>
+            <td class="placeholder" contenteditable="true">Which cannabis AI development is the clearest preview for this sector?</td>
+            <td class="placeholder" contenteditable="true">24–36 months</td>
+            <td class="placeholder" contenteditable="true">The specific trigger that will move this sector into the same dynamic</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="field-block">
+      <p class="field-label">The "defensible AI decisions" read — this period</p>
+      <div class="field-content placeholder" contenteditable="true">
+        <p>Synthesise: based on everything tracked this period — regulatory delta, enforcement, incidents, market dynamics, insurance — how has the definition of "defensible AI decision" moved? What does a defensible AI system in EU cannabis look like today versus six months ago? And what does that tell your clients in adjacent sectors about where their own standard is heading?</p>
+        <p>This is your proprietary analytical conclusion. It should be the paragraph that a client forwards to their board.</p>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="pull-text" contenteditable="true">"The cross-sector insight — the one thing EU cannabis AI tells us about the rest of your world that nobody else is tracking yet."</p>
+      <p class="pull-label">Key insight — cross-sector read</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="report-footer">
+    <span contenteditable="true">EU Cannabis × AI Intelligence Report &nbsp;·&nbsp; Defensible AI Decisions</span>
+    <span contenteditable="true">Confidential — not for distribution &nbsp;·&nbsp; April 2026</span>
+  </div>
+
+</div>
+
+<script>
+function clearPlaceholders() {
+  const confirmed = confirm('Remove all placeholder text? This will clear the italic grey instructional text from all fields, leaving them blank for you to fill in. This cannot be undone.');
+  if (!confirmed) return;
+  document.querySelectorAll('.placeholder').forEach(el => {
+    el.innerHTML = '';
+    el.classList.remove('placeholder');
+  });
+  document.querySelectorAll('.entry-table td.placeholder').forEach(el => {
+    el.textContent = '';
+    el.classList.remove('placeholder');
+    el.style.fontStyle = 'normal';
+    el.style.color = '';
+  });
+  document.querySelectorAll('.matrix-cell.placeholder').forEach(el => {
+    el.textContent = '';
+    el.classList.remove('placeholder');
+  });
+  document.querySelectorAll('.pull-text').forEach(el => {
+    el.textContent = '';
+  });
+  document.querySelector('.exec-body').innerHTML = '<p></p><p></p>';
+}
+</script>
+
+</body>
+</html>
