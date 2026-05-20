@@ -3,7 +3,7 @@ ACCOUNTABLE AI — FOLLOW-UP EMAIL (send 2–3 days after sign-up)
 ===============================================================
 
 SUBJECT LINE:
-Your AI Use Quick Check — and one question
+Your Operational AI Exposure Snapshot — and one question
 
 
 EMAIL BODY:
@@ -11,7 +11,7 @@ EMAIL BODY:
 
 Hi [First name / there],
 
-I hope you had a chance to work through the AI Use Quick Check.
+I hope you had a chance to work through the Operational AI Exposure Snapshot.
 
 It is designed to be a quick, practical way to look at how AI is currently being used in your business — particularly around data, ownership, and consistency.
 
@@ -38,7 +38,7 @@ WELCOME / DELIVERY EMAIL (send immediately on sign-up)
 ===============================================================
 
 SUBJECT LINE:
-Your AI Use Quick Check
+Your Operational AI Exposure Snapshot
 
 
 EMAIL BODY:
@@ -46,9 +46,9 @@ EMAIL BODY:
 
 Hi [First name / there],
 
-Here is your copy of the AI Use Quick Check:
+Here is your copy of the Operational AI Exposure Snapshot:
 
-https://accountableai.uk/downloads/ai-use-quick-check.pdf
+https://accountableai.uk/downloads/operational-ai-exposure-snapshot.pdf
 
 It is a short, practical checklist — should take around 10 minutes to work through.
 

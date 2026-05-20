@@ -10,18 +10,18 @@
 
   <style>
     :root {
-      --navy: #0b0f1f;
-      --navy-mid: #141929;
-      --gold: #c8a96e;
-      --gold-light: #e2c99a;
-      --gold-deep: #8a6820;
-      --page-bg: #f5f2ec;
-      --page-alt: #eceae3;
-      --text: #0d1120;
-      --text-body: rgba(13,17,32,0.72);
-      --text-muted: rgba(13,17,32,0.54);
-      --border: rgba(13,17,32,0.09);
-      --border-gold: rgba(200,169,110,0.35);
+      --navy: #0B1F33;
+      --navy-mid: #163049;
+      --gold: #5E6B73;
+      --gold-light: #DDE6EA;
+      --gold-deep: #4D5D66;
+      --page-bg: #F7F3EA;
+      --page-alt: #EEF1F0;
+      --text: #1F2528;
+      --text-body: rgba(31,37,40,0.82);
+      --text-muted: rgba(31,37,40,0.62);
+      --border: rgba(31,37,40,0.11);
+      --border-gold: rgba(94,107,115,0.28);
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'DM Sans', sans-serif;
     }
@@ -46,9 +46,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.4rem 4rem;
-      border-bottom: 1px solid rgba(200,169,110,0.12);
+      border-bottom: 1px solid rgba(221,230,234,0.16);
       backdrop-filter: blur(12px);
-      background: rgba(11,15,31,0.92);
+      background: rgba(11,31,51,0.94);
       animation: fadeDown 0.8s ease both;
     }
 
@@ -62,7 +62,7 @@
       font-size: 1.2rem;
       font-weight: 400;
       letter-spacing: 0.04em;
-      color: #f4efe6;
+      color: #f7f3ea;
       text-decoration: none;
     }
     .nav-logo span { color: var(--gold); }
@@ -76,7 +76,7 @@
       font-size: 0.76rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(244,239,230,0.55);
+      color: rgba(247,243,234,0.62);
       text-decoration: none;
       transition: color 0.25s;
     }
@@ -104,7 +104,7 @@
     /* ── BUTTONS ── */
     .btn-primary {
       background: var(--navy);
-      color: #f4efe6;
+      color: #f7f3ea;
       padding: 0.75rem 1.7rem;
       font-size: 0.72rem;
       letter-spacing: 0.1em;
@@ -115,10 +115,10 @@
       display: inline-block;
       transition: background 0.25s;
     }
-    .btn-primary:hover { background: #1e2540; }
+    .btn-primary:hover { background: var(--navy-mid); }
 
     .btn-primary-light {
-      background: var(--gold);
+      background: #f7f3ea;
       color: var(--navy);
       padding: 0.75rem 1.7rem;
       font-size: 0.72rem;
@@ -136,7 +136,7 @@
       font-size: 0.82rem;
       color: var(--text-muted);
       text-decoration: none;
-      border-bottom: 1px solid rgba(13,17,32,0.25);
+      border-bottom: 1px solid rgba(31,37,40,0.25);
       padding-bottom: 2px;
       transition: color 0.25s, border-color 0.25s;
     }
@@ -206,7 +206,7 @@
       font-weight: 500;
       color: var(--text);
       margin-top: 1.4rem;
-      border-left: 2px solid rgba(200,169,110,0.55);
+      border-left: 2px solid rgba(94,107,115,0.45);
       padding-left: 1rem;
       animation: fadeUp 0.8s 0.3s ease both;
     }
@@ -294,31 +294,31 @@
       .audit-layout { grid-template-columns: 1fr; gap: 2.5rem; }
     }
 
-    /* ── PACKAGES ── */
-    .packages-section {
+    /* ── ENGAGEMENTS ── */
+    .engagements-section {
       border-bottom: 1px solid var(--border);
     }
 
-    .packages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+    .engagements-list {
       margin-top: 3rem;
+      max-width: 1040px;
+      border-top: 1px solid var(--border);
     }
 
-    .package-card {
-      border: 1px solid var(--border);
-      background: var(--page-bg);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .package-card-header {
-      padding: 2rem 2rem 1.6rem;
+    .engagement-row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.45fr;
+      gap: 4rem;
+      padding: 3rem 0;
       border-bottom: 1px solid var(--border);
     }
 
-    .package-tier {
+    .engagement-row.primary {
+      padding-top: 3.4rem;
+      padding-bottom: 3.4rem;
+    }
+
+    .engagement-label {
       font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -327,62 +327,55 @@
       display: block;
     }
 
-    .package-name {
+    .engagement-title {
       font-family: var(--serif);
-      font-size: 1.5rem;
+      font-size: clamp(1.55rem, 2.4vw, 2.1rem);
       font-weight: 300;
       color: var(--text);
       line-height: 1.2;
-      margin-bottom: 0.6rem;
-    }
-
-    .package-price {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      color: var(--text);
       margin-bottom: 1rem;
     }
 
-    .package-desc {
-      font-size: 0.9rem;
-      line-height: 1.7;
+    .engagement-purpose {
+      font-size: 0.98rem;
+      line-height: 1.8;
       color: var(--text-body);
     }
 
-    .package-card-body {
-      padding: 1.8rem 2rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+    .engagement-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
 
-    .package-includes-wrap {
-      flex: 1;
+    .engagement-detail.full {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
     }
 
-    .package-includes-label {
+    .engagement-subhead {
       font-size: 0.63rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
     }
 
-    .package-includes {
+    .engagement-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 0.55rem;
     }
 
-    .package-includes li {
-      font-size: 0.88rem;
+    .engagement-list li {
+      font-size: 0.9rem;
       color: var(--text-body);
-      line-height: 1.5;
+      line-height: 1.55;
       padding-left: 1.1rem;
       position: relative;
     }
-    .package-includes li::before {
+    .engagement-list li::before {
       content: '';
       position: absolute;
       left: 0;
@@ -393,70 +386,62 @@
       opacity: 0.7;
     }
 
-    .package-outcome {
-      background: var(--page-alt);
-      border: 1px solid var(--border);
-      padding: 1.2rem 1.4rem;
-      margin-top: 1.4rem;
-    }
-
-    .package-outcome-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .package-outcome p {
-      font-size: 0.88rem;
+    .engagement-note {
+      font-size: 0.9rem;
       color: var(--text-body);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    .package-card-footer {
-      padding: 1.6rem 2rem;
-      border-top: 1px solid var(--border);
+    .engagement-report {
+      padding-left: 0;
     }
 
-    .packages-grid-note {
+    .report-output-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 0.9rem;
+    }
+
+    .report-output-list span {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.55;
+    }
+
+    .engagement-actions {
       margin-top: 1.6rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.6;
     }
 
-    /* Highlight card for featured package */
-    .package-card.featured {
-      border-color: var(--border-gold);
-      background: #fff;
-    }
-    .package-card.featured .package-card-header {
-      border-bottom-color: var(--border-gold);
+    @media (max-width: 920px) {
+      .engagement-row,
+      .engagement-detail {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
     }
 
     /* ── CTA SECTION ── */
     .cta-section {
       background: var(--navy);
-      border-top: 1px solid rgba(200,169,110,0.12);
+      border-top: 1px solid rgba(221,230,234,0.16);
       text-align: center;
       padding: 4rem 4rem;
     }
 
     .cta-section .section-title {
-      color: #f4efe6;
+      color: #f7f3ea;
       margin-bottom: 1.2rem;
     }
 
     .cta-section .section-intro {
-      color: rgba(244,239,230,0.65);
+      color: rgba(247,243,234,0.68);
       margin: 0 auto 2.8rem;
     }
 
     .cta-contact {
       font-size: 0.92rem;
-      color: rgba(244,239,230,0.55);
+      color: rgba(247,243,234,0.58);
       line-height: 2;
     }
 
@@ -525,10 +510,6 @@
 
       section { padding: 3rem 1.5rem; }
 
-      .packages-grid {
-        grid-template-columns: 1fr;
-      }
-
       .cta-section { padding: 4rem 1.5rem; }
 
       footer {
@@ -559,14 +540,12 @@
       <div class="section-label-line"></div>
       <span>Services</span>
     </div>
-    <h1 class="section-title">Services</h1>
+    <h1 class="section-title">Operational AI Defensibility Services</h1>
     <p class="section-intro">
-      AI is already shaping decisions across most organisations.<br/>
-      In many cases, those decisions cannot be clearly explained, owned, or defended.<br/>
-      That gap is where risk sits.
+      Operational engagements for organisations using AI inside workflows where accountability, evidence, and reviewability matter.
     </p>
     <p class="page-hero-question">
-      If something AI-assisted is sent, decided, or actioned — who owns the outcome?
+      If an AI-assisted outcome is questioned, can the workflow be reconstructed and defended?
     </p>
   </div>
 
@@ -574,154 +553,167 @@
   <section id="audit" class="audit-section">
     <div class="section-label reveal">
       <div class="section-label-line"></div>
-      <span>Primary Service</span>
+      <span>Primary engagement</span>
     </div>
-    <h2 class="section-title reveal">AI Defensibility Review</h2>
-    <p class="section-intro reveal">A focused working session for organisations using AI in real decisions. We examine whether your AI use would hold up if it was questioned — by a client, an auditor, or leadership — and identify what needs to change if it wouldn't.</p>
+    <h2 class="section-title reveal">Operational AI Defensibility Review</h2>
+    <p class="section-intro reveal">A structured operational assessment examining whether AI-assisted workflows remain reviewable, reconstructable, and defensible when outcomes are questioned.</p>
 
     <div class="audit-layout">
       <div class="reveal">
-        <p class="audit-map-label">You likely need this if</p>
+        <p class="audit-map-label">Focus</p>
         <ul class="audit-map">
-          <li>AI is already being used in client work, analysis, or operational decisions</li>
-          <li>outputs are reviewed, but no one has formally defined who owns them</li>
-          <li>the review process is informal — a quick check rather than a defined step</li>
-          <li>you are unsure what would happen if an AI-assisted output turned out to be wrong</li>
-          <li>clients, auditors, or leadership may ask how AI-supported decisions are made</li>
+          <li>human review conditions</li>
+          <li>traceability</li>
+          <li>evidence access</li>
+          <li>escalation logic</li>
+          <li>accountability conditions</li>
+          <li>defensibility under scrutiny</li>
         </ul>
 
-        <p class="audit-map-label" style="margin-top: 1.6rem;">What happens</p>
-        <p class="audit-note">A 90-minute working session focused on 2–3 real AI use cases from your organisation. We examine what the AI is doing, what decision or action follows, who owns the outcome, what happens if it is wrong, and what review or approval happens before action is taken.</p>
+        <p class="audit-map-label" style="margin-top: 1.6rem;">Assessment logic</p>
+        <p class="audit-note">The assessment reviews operational workflows where AI influences consequential decisions, summaries, recommendations, or review activity.</p>
       </div>
 
       <div class="audit-right reveal">
         <div>
-          <span class="audit-outcome-label">What you receive</span>
-          <p class="audit-outcome-body">A concise Defensibility Snapshot delivered within 3 working days. This is a structured document — not session notes — covering:</p>
-          <ul class="audit-map" style="margin-top: 0.8rem;">
-            <li>key risks identified across the use cases reviewed</li>
-            <li>ownership gaps and where accountability is unclear</li>
-            <li>clear next steps, prioritised by exposure</li>
-          </ul>
+          <span class="audit-outcome-label">Output</span>
+          <p class="audit-outcome-body">An Operational AI Defensibility Report prepared using the BAT operational assessment methodology.</p>
+          <div class="report-output-list">
+            <span>AI Operational Exposure Map</span>
+            <span>Trigger Logic Findings</span>
+            <span>Human Review Conditions Assessment</span>
+            <span>AI Defence Trail</span>
+            <span>Evidence Gap Summary</span>
+            <span>Operational remediation priorities</span>
+          </div>
         </div>
         <hr class="audit-divider" />
         <div>
-          <p class="audit-outcome-body">A clear view of whether your AI use would hold up if it was questioned — and what needs to change if it wouldn't.</p>
+          <p class="audit-outcome-body">A clear view of whether the workflow would hold up under scrutiny, and what needs to change if it would not.</p>
         </div>
-        <a href="https://calendly.com/kim-accountableai/30min" target="_blank" class="btn-primary">Book a Defensibility Review</a>
+        <a href="mailto:kim@accountableai.uk?subject=Request%20an%20AI%20Defensibility%20Review" class="btn-primary">Request a review</a>
       </div>
     </div>
   </section>
 
-  <!-- PACKAGES -->
-  <section class="packages-section">
+  <!-- ENGAGEMENTS -->
+  <section class="engagements-section">
     <div class="section-label reveal">
       <div class="section-label-line"></div>
-      <span>Packages</span>
+      <span>Engagement types</span>
     </div>
-    <h2 class="section-title reveal">Choose your starting point</h2>
+    <h2 class="section-title reveal">Operational engagements</h2>
+    <p class="section-intro reveal">Each engagement is shaped around the workflow being assessed. The emphasis is on operational evidence, review conditions, traceability, and accountability under scrutiny.</p>
 
-    <div class="packages-grid">
-
-      <!-- Establish Position -->
-      <div class="package-card reveal" id="establish">
-        <div class="package-card-header">
-          <span class="package-tier">Establish Position</span>
-          <div class="package-name">Establish Position</div>
-          <div class="package-price">Fixed-scope starting point</div>
-          <p class="package-desc">Clarity on current AI use and immediate guardrails.</p>
+    <div class="engagements-list">
+      <div class="engagement-row reveal" id="exposure">
+        <div>
+          <span class="engagement-label">01</span>
+          <h3 class="engagement-title">AI Operational Exposure Review</h3>
+          <p class="engagement-purpose">Helps organisations identify where AI is already influencing operational decisions, summaries, triage, recommendations, and review activity.</p>
         </div>
-        <div class="package-card-body">
-          <div class="package-includes-wrap">
-            <p class="package-includes-label">Includes</p>
-            <ul class="package-includes">
-              <li>AI Use Audit</li>
-              <li>Standard AI Accountability Policy</li>
+        <div class="engagement-detail">
+          <div>
+            <p class="engagement-subhead">Focus</p>
+            <ul class="engagement-list">
+              <li>workflow visibility</li>
+              <li>operational transition points</li>
+              <li>ownership</li>
+              <li>review expectations</li>
+              <li>evidence visibility</li>
             </ul>
           </div>
-          <div class="package-outcome">
-            <span class="package-outcome-label">Outcome</span>
-            <p>You understand where AI is being used and where accountability is unclear.</p>
+          <div>
+            <p class="engagement-subhead">Suitable for</p>
+            <p class="engagement-note">Teams beginning to assess operational AI exposure and needing a clearer view of where AI is already shaping consequential work.</p>
+            <div class="engagement-actions">
+              <a href="mailto:kim@accountableai.uk?subject=AI%20Operational%20Exposure%20Review" class="btn-ghost">Discuss a workflow</a>
+            </div>
           </div>
-        </div>
-        <div class="package-card-footer">
-          <a href="mailto:kim@accountableai.uk?subject=Establish Position" class="btn-primary">Discuss your starting point</a>
         </div>
       </div>
 
-      <!-- Operational Control -->
-      <div class="package-card featured reveal" id="operational">
-        <div class="package-card-header">
-          <span class="package-tier">Operational Control</span>
-          <div class="package-name">Operational Control</div>
-          <div class="package-price">Workshop-led scoped package</div>
-          <p class="package-desc">Alignment across teams using AI in day-to-day workflows.</p>
+      <div class="engagement-row primary reveal" id="operational">
+        <div>
+          <span class="engagement-label">02 · Primary engagement</span>
+          <h3 class="engagement-title">Operational AI Defensibility Review</h3>
+          <p class="engagement-purpose">A structured operational assessment examining whether AI-assisted workflows remain reviewable, reconstructable, and defensible when outcomes are questioned.</p>
         </div>
-        <div class="package-card-body">
-          <div class="package-includes-wrap">
-            <p class="package-includes-label">Includes</p>
-            <ul class="package-includes">
-              <li>AI Use Audit</li>
-              <li>Team Workshop (2 hours)</li>
-              <li>Standard AI Accountability Policy</li>
+        <div class="engagement-detail">
+          <div>
+            <p class="engagement-subhead">Focus</p>
+            <ul class="engagement-list">
+              <li>human review conditions</li>
+              <li>traceability</li>
+              <li>evidence access</li>
+              <li>escalation logic</li>
+              <li>accountability conditions</li>
+              <li>defensibility under scrutiny</li>
             </ul>
           </div>
-          <div class="package-outcome">
-            <span class="package-outcome-label">Outcome</span>
-            <p>AI use is visible, understood, and consistently applied across teams.</p>
+          <div class="engagement-report">
+            <p class="engagement-subhead">Report output</p>
+            <p class="engagement-note">Operational AI Defensibility Report prepared using the BAT operational assessment methodology.</p>
+            <div class="report-output-list">
+              <span>AI Operational Exposure Map</span>
+              <span>Trigger Logic Findings</span>
+              <span>Human Review Conditions Assessment</span>
+              <span>AI Defence Trail</span>
+              <span>Evidence Gap Summary</span>
+              <span>Operational remediation priorities</span>
+            </div>
+            <div class="engagement-actions">
+              <a href="mailto:kim@accountableai.uk?subject=Request%20an%20Operational%20AI%20Defensibility%20Review" class="btn-primary">Request a review</a>
+            </div>
           </div>
-        </div>
-        <div class="package-card-footer">
-          <a href="mailto:kim@accountableai.uk?subject=Operational Control" class="btn-primary">Discuss team requirements</a>
         </div>
       </div>
 
-      <!-- Decision Control -->
-      <div class="package-card reveal" id="decision">
-        <div class="package-card-header">
-          <span class="package-tier">Decision Control</span>
-          <div class="package-name">Decision Control</div>
-          <div class="package-price">Advanced scoped engagement</div>
-          <p class="package-desc">For organisations where AI is influencing real decisions.</p>
+      <div class="engagement-row reveal" id="support">
+        <div>
+          <span class="engagement-label">03</span>
+          <h3 class="engagement-title">Ongoing Defensibility Support</h3>
+          <p class="engagement-purpose">Follow-on operational support for organisations strengthening evidence visibility, review conditions, workflow traceability, or remediation planning.</p>
         </div>
-        <div class="package-card-body">
-          <div class="package-includes-wrap">
-            <p class="package-includes-label">Includes</p>
-            <ul class="package-includes">
-              <li>AI Defensibility Review</li>
-              <li>AI Use Audit</li>
-              <li>Tailored AI Accountability Policy</li>
+        <div class="engagement-detail">
+          <div>
+            <p class="engagement-subhead">Support areas</p>
+            <ul class="engagement-list">
+              <li>operational review redesign</li>
+              <li>evidence visibility improvements</li>
+              <li>escalation logic</li>
+              <li>AI review governance</li>
+              <li>workflow defensibility refinement</li>
             </ul>
           </div>
-          <div class="package-outcome">
-            <span class="package-outcome-label">Outcome</span>
-            <p>AI-influenced decisions are clear, owned, and defensible.</p>
+          <div>
+            <p class="engagement-subhead">Suitable for</p>
+            <p class="engagement-note">Organisations that have identified operational exposure and need practical support improving how AI-assisted work is reviewed, recorded, escalated, and defended.</p>
+            <div class="engagement-actions">
+              <a href="mailto:kim@accountableai.uk?subject=Ongoing%20Defensibility%20Support" class="btn-ghost">Start a conversation</a>
+            </div>
           </div>
         </div>
-        <div class="package-card-footer">
-          <a href="mailto:kim@accountableai.uk?subject=Decision Control" class="btn-primary">Arrange a scoping call</a>
-        </div>
       </div>
-
     </div>
-    <p class="packages-grid-note">Engagements are structured according to organisational size, complexity, and current AI exposure. Fixed-scope options are available for early-stage teams.</p>
   </section>
 
   <!-- CTA -->
   <section id="contact" class="cta-section">
     <div class="section-label reveal" style="justify-content: center;">
-      <div class="section-label-line" style="background: rgba(200,169,110,0.5);"></div>
-      <span style="color: rgba(200,169,110,0.7);">Get started</span>
-      <div class="section-label-line" style="background: rgba(200,169,110,0.5);"></div>
+      <div class="section-label-line" style="background: rgba(221,230,234,0.45);"></div>
+      <span style="color: rgba(221,230,234,0.72);">Contact</span>
+      <div class="section-label-line" style="background: rgba(221,230,234,0.45);"></div>
     </div>
-    <h2 class="section-title reveal">Not sure where to start?</h2>
-    <p class="section-intro reveal">Most teams start by understanding where AI is already influencing decisions — and whether those decisions would hold up if questioned.</p>
+    <h2 class="section-title reveal">Start a conversation.</h2>
+    <p class="section-intro reveal">Most teams start by understanding where AI is influencing operational workflows — and whether those workflows remain reviewable and defensible when outcomes are challenged.</p>
     <div class="reveal" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
-      <a href="https://calendly.com/kim-accountableai/30min" target="_blank" class="btn-primary-light">Book a Defensibility Review</a>
-      <a href="mailto:kim@accountableai.uk?subject=AI Use Audit" class="text-link-light">Or discuss the right starting point for your organisation</a>
+      <a href="mailto:kim@accountableai.uk" class="btn-primary-light">Email</a>
+      <a href="mailto:kim@accountableai.uk?subject=Discuss%20an%20AI-assisted%20workflow" class="text-link-light">Discuss a workflow</a>
+      <a href="mailto:kim@accountableai.uk?subject=Request%20an%20AI%20Defensibility%20Review" class="text-link-light">Request a review</a>
     </div>
     <div class="cta-contact reveal" style="margin-top: 2rem;">
-      No upfront commitment.&nbsp;&nbsp;·&nbsp;&nbsp;Short written outputs provided within 3 working days.
+      Operational assessment.&nbsp;&nbsp;·&nbsp;&nbsp;Structured report.&nbsp;&nbsp;·&nbsp;&nbsp;Clear remediation priorities.
     </div>
   </section>
 
