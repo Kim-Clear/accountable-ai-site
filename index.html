@@ -1,1112 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accountable AI — AI Governance & Defensibility</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --navy: #0B1F33;
-      --navy-mid: #163049;
-      --gold: #5E6B73;
-      --gold-light: #DDE6EA;
-      --gold-deep: #4D5D66;
-      --page-bg: #F7F3EA;
-      --page-alt: #EEF1F0;
-      --text: #1F2528;
-      --text-body: rgba(31,37,40,0.82);
-      --text-muted: rgba(31,37,40,0.62);
-      --border: rgba(31,37,40,0.11);
-      --border-gold: rgba(94,107,115,0.28);
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'DM Sans', sans-serif;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--page-bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-weight: 300;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV — kept dark ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.4rem 4rem;
-      border-bottom: 1px solid rgba(221,230,234,0.16);
-      backdrop-filter: blur(12px);
-      background: rgba(11,31,51,0.94);
-      animation: fadeDown 0.8s ease both;
-    }
-
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      color: #f7f3ea;
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.76rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(247,243,234,0.62);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    .nav-cta {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--navy);
-      background: var(--gold);
-      padding: 0.55rem 1.2rem;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.25s;
-    }
-    .nav-cta:hover { background: var(--gold-light); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── HERO ── */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      padding: 8rem 4rem 5rem;
-      gap: 5rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
-
-    .hero-left {
-      max-width: 620px;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      animation: fadeUp 0.8s 0.1s ease both;
-    }
-    .hero-eyebrow span {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-    }
-    .eyebrow-line {
-      width: 36px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.6;
-    }
-
-    .hero-headline {
-      font-family: var(--serif);
-      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 1.6rem;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
-    .hero-headline em {
-      font-style: italic;
-      color: var(--gold-deep);
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: var(--text-body);
-      max-width: 520px;
-      margin-bottom: 1.4rem;
-      animation: fadeUp 0.8s 0.35s ease both;
-    }
-
-    .hero-question {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 2.4rem;
-      animation: fadeUp 0.8s 0.45s ease both;
-      border-left: 2px solid rgba(94,107,115,0.45);
-      padding-left: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 1.8rem;
-      flex-wrap: wrap;
-      animation: fadeUp 0.8s 0.5s ease both;
-    }
-
-    .btn-primary {
-      background: var(--navy);
-      color: #f7f3ea;
-      padding: 0.75rem 1.7rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      font-family: var(--sans);
-      display: inline-block;
-      transition: background 0.25s;
-      max-width: 100%;
-      line-height: 1.35;
-      text-align: center;
-    }
-    .btn-primary:hover { background: var(--navy-mid); }
-
-    .btn-ghost {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(31,37,40,0.25);
-      padding-bottom: 2px;
-      transition: color 0.25s, border-color 0.25s;
-    }
-    .btn-ghost:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
-
-    /* Portrait */
-    .hero-portrait {
-      display: flex;
-      align-items: flex-start;
-      padding-top: 2rem;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-
-    .portrait-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .portrait-img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 4px;
-      border: 1px solid var(--border-gold);
-      display: block;
-    }
-
-    .portrait-name {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-align: center;
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 4rem 4rem; }
-
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      margin-bottom: 1.2rem;
-    }
-    .section-label span {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-    }
-    .section-label-line { width: 28px; height: 1px; background: var(--gold); opacity: 0.55; }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 300;
-      line-height: 1.15;
-      color: var(--text);
-      margin-bottom: 1.2rem;
-    }
-    .section-title em { font-style: italic; color: var(--gold-deep); }
-
-    .section-intro {
-      font-size: 0.98rem;
-      color: var(--text-body);
-      line-height: 1.8;
-      max-width: 560px;
-    }
-
-    /* ── WHERE ARE YOU NOW ── */
-    .where-section {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .where-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      margin-top: 2.6rem;
-      max-width: 760px;
-      border-top: 1px solid var(--border);
-    }
-
-    .where-item {
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: 3rem;
-      padding: 1.55rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .where-item h3 {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-weight: 300;
-      line-height: 1.25;
-      color: var(--text);
-    }
-
-    .where-item p {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--text-body);
-    }
-
-    @media (max-width: 860px) {
-      .where-item { grid-template-columns: 1fr; gap: 0.6rem; }
-    }
-
-    /* ── PROBLEM ── */
-    .problem-section {
-      background: var(--page-alt);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 3rem;
-      max-width: 860px;
-    }
-
-    .problem-card {
-      border: 1px solid var(--border);
-      padding: 2.2rem 2rem;
-      background: var(--page-bg);
-    }
-
-    .problem-card p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: var(--text-body);
-    }
-
-    /* ── PRIMARY OFFER ── */
-    .offer-section {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .offer-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: flex-start;
-      margin-top: 3rem;
-    }
-
-
-
-    .offer-description {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text-body);
-      margin-bottom: 2rem;
-    }
-
-    .offer-questions {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-bottom: 2.4rem;
-    }
-
-    .offer-questions li {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      font-size: 0.93rem;
-      color: var(--text-body);
-      line-height: 1.5;
-    }
-
-    .offer-questions li::before {
-      content: '';
-      width: 16px;
-      height: 1px;
-      background: var(--gold);
-      margin-top: 0.65em;
-      flex-shrink: 0;
-    }
-
-    .offer-right {
-      border: 1px solid var(--border-gold);
-      padding: 2.4rem;
-      background: #fff;
-    }
-
-    .offer-tag {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-      margin-bottom: 1.4rem;
-      display: block;
-    }
-
-    .offer-right h3 {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 1.6rem;
-    }
-
-    .offer-detail {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .offer-detail-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .offer-detail-num {
-      font-family: var(--serif);
-      font-size: 0.8rem;
-      color: var(--gold-deep);
-      opacity: 0.7;
-      min-width: 20px;
-      padding-top: 0.05rem;
-    }
-
-    .offer-detail-text {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--text-body);
-    }
-
-    .offer-detail-text strong {
-      display: block;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-      font-size: 0.9rem;
-    }
-
-    .offer-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 1.8rem 0;
-    }
-
-    .offer-snapshot {
-      font-size: 0.88rem;
-      color: var(--text-body);
-      line-height: 1.6;
-      margin-bottom: 1.8rem;
-    }
-
-    .offer-price {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 1.4rem;
-    }
-
-    /* ── ABOUT ── */
-    .about-section {
-      background: var(--page-alt);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: flex-start;
-      margin-top: 2rem;
-    }
-
-    .about-text p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: var(--text-body);
-      margin-bottom: 1.2rem;
-    }
-
-    .key-emphasis {
-      font-style: italic;
-      color: var(--gold-deep);
-    }
-
-    blockquote {
-      font-family: var(--serif);
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.45;
-      color: var(--text);
-      position: relative;
-      padding-left: 1.8rem;
-      border-left: 2px solid var(--gold);
-    }
-
-
-    /* ── CTA ── */
-    .cta-section {
-      background: var(--navy);
-      border-top: 1px solid rgba(221,230,234,0.16);
-      text-align: center;
-      padding: 4rem 4rem;
-    }
-
-    .cta-section .section-title {
-      color: #f7f3ea;
-      margin-bottom: 1.2rem;
-    }
-
-    .cta-section .section-intro {
-      color: rgba(247,243,234,0.68);
-      margin: 0 auto 2.8rem;
-    }
-
-    .cta-contact {
-      font-size: 0.92rem;
-      color: rgba(247,243,234,0.58);
-      line-height: 2;
-    }
-
-    .text-link-light {
-      color: var(--gold);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.25s;
-    }
-    .text-link-light:hover { border-color: var(--gold); }
-
-    .text-link {
-      color: var(--gold-deep);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.25s ease;
-      font-weight: 500;
-    }
-    .text-link:hover { border-bottom: 1px solid var(--gold-deep); }
-
-    .btn-primary-light {
-      background: #f7f3ea;
-      color: var(--navy);
-      padding: 0.75rem 1.7rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      font-family: var(--sans);
-      display: inline-block;
-      transition: background 0.25s;
-      max-width: 100%;
-      line-height: 1.35;
-      text-align: center;
-    }
-    .btn-primary-light:hover { background: var(--gold-light); }
-
-    /* ── PRIVACY ── */
-    .privacy-section {
-      padding: 3.5rem 4rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .privacy-content {
-      max-width: 600px;
-      margin-top: 2rem;
-    }
-
-    .privacy-content p {
-      font-size: 0.9rem;
-      color: var(--text-body);
-      line-height: 1.75;
-      margin-bottom: 1.2rem;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 2.5rem 4rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--page-bg);
-    }
-
-    .footer-logo {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--text-muted);
-    }
-    .footer-logo span { color: var(--gold-deep); }
-
-    .footer-copy {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .footer-links a:hover { color: var(--gold-deep); }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      .reveal.animate {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      .reveal.animate.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-
-
-    /* ── GOVERNANCE / SERVICES / QUICK CHECK ── */
-    .governance-section { background: var(--page-alt); border-bottom: 1px solid var(--border); }
-    .governance-points, .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2.6rem; max-width: 1040px; }
-    .governance-card, .service-card { border: 1px solid var(--border); background: transparent; padding: 1.8rem 1.6rem; }
-    .governance-card h3, .service-card h3 { font-family: var(--serif); font-weight: 300; font-size: 1.25rem; color: var(--text); margin-bottom: 0.8rem; }
-    .governance-card p, .service-card p { font-size: 0.9rem; line-height: 1.65; color: var(--text-body); }
-    .services-section { border-bottom: 1px solid var(--border); }
-    .service-card.featured { background: transparent; border-color: var(--border); }
-    .service-card a { display: inline-block; margin-top: 1.2rem; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-deep); text-decoration: none; font-weight: 500; }
-    .quick-check-section { background: var(--navy); color: #f7f3ea; border-bottom: 1px solid rgba(221,230,234,0.16); }
-    .quick-check-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; max-width: 1040px; }
-    .quick-check-section .section-title { color: #f7f3ea; }
-    .quick-check-section .section-intro { color: rgba(247,243,234,0.7); }
-    .quick-check-box { border: 1px solid rgba(221,230,234,0.28); padding: 2rem; background: rgba(255,255,255,0.03); }
-    .quick-check-box p { font-size: 0.92rem; line-height: 1.7; color: rgba(247,243,234,0.72); margin-bottom: 1.4rem; }
-    @media (max-width: 980px) { .governance-points, .services-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    /* ── MOBILE ── */
-    @media (max-width: 860px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 7rem 1.5rem 3.5rem;
-        min-height: auto;
-        gap: 2.5rem;
-      }
-
-      .hero-portrait {
-        order: -1;
-        padding-top: 0;
-      }
-
-      .portrait-img {
-        width: 100px;
-        height: 100px;
-      }
-
-      section { padding: 3rem 1.5rem; }
-      .privacy-section { padding: 2.5rem 1.5rem; }
-
-      .offer-layout,
-      .about-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .problem-grid,
-      .governance-points,
-      .services-grid,
-      .quick-check-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-section { padding: 4rem 1.5rem; }
-
-      footer {
-        flex-direction: column;
-        gap: 1.5rem;
-        text-align: center;
-        padding: 2rem 1.5rem;
-      }
-
-      .footer-links { justify-content: center; }
-
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Accountable <span>AI</span></a>
-    <ul class="nav-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="#governance">Defensibility</a></li>
-      <li><a href="#offer">Report</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-    <a href="mailto:kim@accountableai.uk" class="nav-cta">Get in touch</a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-left">
-      <div class="hero-eyebrow">
-        <div class="eyebrow-line"></div>
-        <span>Operational AI defensibility</span>
-      </div>
-      <h1 class="hero-headline">
-        AI-assisted decisions need<br/><em>an evidence trail.</em>
-      </h1>
-      <p class="hero-sub">
-        We assess whether AI-assisted operational workflows remain reviewable, reconstructable, and defensible under scrutiny.<br/><br/>For operational teams using AI inside regulated or accountability-sensitive workflows.
-      </p>
-      <p class="hero-question">
-        If an AI-assisted outcome is challenged, can your organisation reconstruct what happened, who reviewed it, and what evidence was available at the time?
-      </p>
-      <div class="hero-actions">
-        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
-          <a href="mailto:kim@accountableai.uk?subject=Request%20an%20Operational%20AI%20Defensibility%20Review" class="btn-primary">Request a review</a>
-          <span style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">A focused review for teams already using AI inside consequential workflows.</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AI Governance consultancy focused on defensibility, evidence trails, and reviewable AI-assisted operational workflows."
+    />
+    <title>Accountable AI | Evidence Trails for AI-Assisted Decisions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Accountable AI home">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>Accountable AI</span>
+      </a>
+      <nav class="nav-links" aria-label="Site">
+        <a href="#work">Work</a>
+        <a href="#framework">Framework</a>
+        <a href="#fit">Fit</a>
+        <a class="nav-cta" href="#contact">Enquire</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="assets/evidence-trail-hero.png"
+          alt="Abstract evidence trail of layered records and review checkpoints"
+        />
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Evidence for AI-assisted decisions</p>
+          <h1 id="hero-title">AI-assisted decisions need an evidence trail.</h1>
+          <p class="hero-copy">
+            I assess whether AI-assisted decisions and workflows remain
+            reviewable, reconstructable, and defensible under scrutiny.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#contact">Request a defensibility review</a>
+            <a class="button secondary" href="#framework">See the Methodology</a>
+          </div>
+          <p class="method-note">Using BAT (Backward Accountability Traceability).</p>
         </div>
-        <a href="mailto:kim@accountableai.uk?subject=Discuss%20an%20AI-assisted%20workflow" class="btn-ghost">Discuss a workflow</a>
-      </div>
-    </div>
+      </section>
 
-    <div class="hero-portrait">
-      <div class="portrait-wrap">
-        <img src="kim-stevens-profile.PNG" alt="Kim Stevens, Accountable AI" class="portrait-img" />
-        <span class="portrait-name">Kim Stevens</span>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- GOVERNANCE CONTEXT -->
-  <section id="governance" class="governance-section">
-    <div class="section-label reveal"><div class="section-label-line"></div><span>What is being tested</span></div>
-    <h2 class="section-title reveal">Accountability has to survive contact with <em>the workflow.</em></h2>
-    <p class="section-intro reveal">The issue is not simply whether AI makes mistakes. It is whether the organisation can later show how an AI-assisted outcome was reached, what evidence was available, and whether meaningful review was realistically possible.</p>
-    <div class="governance-points">
-      <div class="governance-card reveal"><h3>Exposure</h3><p>Where does AI enter the workflow, and what operational judgement does it shape?</p></div>
-      <div class="governance-card reveal"><h3>Review</h3><p>Can the human reviewer see enough evidence, context, and uncertainty to challenge the output?</p></div>
-      <div class="governance-card reveal"><h3>Traceability</h3><p>Can the organisation distinguish AI output, human edits, sign-off, escalation, and final action?</p></div>
-      <div class="governance-card reveal"><h3>Defensibility</h3><p>Would the workflow remain reviewable and reconstructable if the outcome was questioned?</p></div>
-    </div>
-  </section>
-
-  <!-- SERVICES OVERVIEW -->
-  <section id="services-overview" class="services-section">
-    <div class="section-label reveal"><div class="section-label-line"></div><span>The report logic</span></div>
-    <h2 class="section-title reveal">An operational assessment, not a generic <em>AI policy review.</em></h2>
-    <p class="section-intro reveal">The review produces an Operational AI Defensibility Report focused on evidence, reviewability, ownership, and remediation priorities.</p>
-    <div class="services-grid">
-      <div class="service-card reveal"><h3>Exposure Map</h3><p>Where AI enters the workflow, what it influences, and where outputs become operationally consequential.</p><a href="#offer">View the review</a></div>
-      <div class="service-card reveal"><h3>Defence Trail</h3><p>The evidence trail needed to reconstruct AI-assisted decisions, review points, and final action.</p><a href="#offer">View the report</a></div>
-      <div class="service-card reveal"><h3>Review Conditions</h3><p>Whether human oversight is meaningful under real operating conditions, including time, interface, and evidence access.</p><a href="#offer">View the method</a></div>
-      <div class="service-card reveal"><h3>Remediation Priorities</h3><p>Clear operational changes to strengthen reviewability, traceability, and accountability.</p><a href="#offer">View next steps</a></div>
-    </div>
-  </section>
-
-  <!-- WHERE ARE YOU NOW -->
-  <section id="where" class="where-section">
-    <div class="section-label reveal">
-      <div class="section-label-line"></div>
-      <span>Where are you right now?</span>
-    </div>
-    <h2 class="section-title reveal">Where are you right now?</h2>
-
-    <div class="where-list">
-      <div class="where-item reveal">
-        <h3>AI is already shaping operational judgement</h3>
-        <p>But the points where it influences consequential outcomes are not fully mapped.</p>
-      </div>
-      <div class="where-item reveal">
-        <h3>Human review exists</h3>
-        <p>But time pressure, interface design, or unclear ownership may limit meaningful oversight.</p>
-      </div>
-      <div class="where-item reveal">
-        <h3>The evidence trail is incomplete</h3>
-        <p>If an outcome is challenged later, reconstructing what happened may be difficult.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROBLEM -->
-  <section id="problem" class="problem-section">
-    <div class="section-label reveal">
-      <div class="section-label-line"></div>
-      <span>The problem</span>
-    </div>
-    <h2 class="section-title reveal">
-      The risk is not only that AI gets<br/>
-      something <em>wrong.</em>
-    </h2>
-    <p class="section-intro reveal">The greater risk is that the organisation cannot later reconstruct how the outcome was reached, what was checked, or whether review was realistically possible.</p>
-
-    <div class="problem-grid">
-      <div class="problem-card reveal">
-        <p>Who checked this output? What source evidence was visible? Was the reviewer able to challenge it? What changed between the AI draft and the final action?<br/><br/>These are the questions that matter when an AI-assisted outcome is challenged.</p>
-      </div>
-      <div class="problem-card reveal">
-        <p>"Human-in-the-loop" is not enough on its own.<br/><br/>Review depends on time, evidence visibility, escalation routes, and whether uncertainty can be recorded.<br/><br/>The gap between nominal oversight and operationally meaningful review is where defensibility often breaks down.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRIMARY OFFER -->
-  <section id="offer" class="offer-section">
-    <div class="section-label reveal">
-      <div class="section-label-line"></div>
-      <span>Primary service</span>
-    </div>
-    <h2 class="section-title reveal">Operational AI Defensibility Review</h2>
-    <p class="section-intro reveal">A focused assessment of an AI-assisted workflow in a regulated or higher-consequence environment.</p>
-
-    <div class="offer-layout">
-      <div class="offer-left reveal">
-        <p class="offer-description">
-          We assess where AI enters the workflow, what it influences, and whether resulting outcomes remain operationally reviewable, reconstructable, and defensible under scrutiny.
-        </p>
-        <p class="offer-description">
-          Built for operational environments where accountability matters, including healthcare and NHS-adjacent services, insurance and financial operations, public sector and outsourced delivery, biotech, pharma, clinical operations, and compliance-heavy SMEs using AI inside operational workflows.
-        </p>
-        <p class="offer-description">
-          You likely need this if:
-        </p>
-        <ul class="offer-questions">
-          <li>AI is already being used in operational workflows,</li>
-          <li>humans remain accountable for AI-assisted outputs,</li>
-          <li>review is expected, but not clearly defined,</li>
-          <li>decisions may affect customers, patients, service users, staff, or regulated processes,</li>
-          <li>and clients, auditors, leadership, or regulators may ask how an outcome was reached.</li>
-        </ul>
-        <p class="offer-description">
-          The assessment reviews real operational workflows where AI influences consequential decisions, recommendations, summaries, or review activity.
-        </p>
-        <p class="offer-description">
-          The outcome is a clear view of whether your AI use would hold up if it was questioned — and what needs to change if it wouldn't.
-        </p>
-
-        <p style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 0.8rem; margin-top: 2rem;">Who it's for</p>
-        <p class="offer-description">
-          This is for teams already using AI in workflows where human accountability remains in place, but AI increasingly shapes operational judgement.
-        </p>
-
-        <p style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 0.8rem; margin-top: 1.6rem;">Why this matters</p>
-        <p class="offer-description">
-          Defensibility depends on whether the organisation can show what happened, what was reviewed, what evidence was available, and whether genuine review was operationally possible.
-        </p>
-      </div>
-
-      <div class="offer-right reveal">
-        <span class="offer-tag">The report</span>
-        <h3>Operational AI Defensibility Report</h3>
-
-        <div class="offer-detail">
-          <div class="offer-detail-item">
-            <span class="offer-detail-num">01</span>
-            <div class="offer-detail-text">
-              AI Operational Exposure Map
-            </div>
+      <section class="intro section-band">
+        <div class="section-inner intro-grid">
+          <div>
+            <p class="eyebrow">The evidence gap</p>
+            <h2>AI can accelerate work without leaving enough behind to defend it.</h2>
           </div>
-          <div class="offer-detail-item">
-            <span class="offer-detail-num">02</span>
-            <div class="offer-detail-text">
-              Trigger Logic Findings
-            </div>
+          <p>
+            In regulated and accountability-sensitive environments, the question is
+            not only whether an AI tool is useful. It is whether the surrounding
+            workflow can explain what happened, who reviewed it, what evidence was
+            relied on, and why the final decision was reasonable.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="work" aria-labelledby="work-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">What I do</p>
+            <h2 id="work-title">Defensibility assessments for live AI-assisted workflows.</h2>
           </div>
-          <div class="offer-detail-item">
-            <span class="offer-detail-num">03</span>
-            <div class="offer-detail-text">
-              Human Review Conditions Assessment
-            </div>
+          <div class="service-grid">
+            <article class="service-card">
+              <span class="card-index">01</span>
+              <h3>BAT Rapid</h3>
+              <p>
+                AI Human Review Reality Check. A fixed-scope review of one
+                AI-supported workflow to test whether human review is meaningful,
+                realistic, and evidenced.
+              </p>
+            </article>
+            <article class="service-card">
+              <span class="card-index">02</span>
+              <h3>BAT Review</h3>
+              <p>
+                Focused AI Operational Defensibility Assessment. A deeper
+                single-workflow assessment with targeted evidence review and
+                reconstruction testing.
+              </p>
+            </article>
+            <article class="service-card">
+              <span class="card-index">03</span>
+              <h3>AI Defensibility Review</h3>
+              <p>
+                Full structured BAT assessment of consequential AI-supported
+                operations, for one consequential workflow or a small workflow
+                cluster.
+              </p>
+            </article>
           </div>
-          <div class="offer-detail-item">
-            <span class="offer-detail-num">04</span>
-            <div class="offer-detail-text">
-              AI Defence Trail and Evidence Gap Summary
+        </div>
+      </section>
+
+      <section class="section framework" id="framework" aria-labelledby="framework-title">
+        <div class="section-inner framework-grid">
+          <div class="framework-copy">
+            <p class="eyebrow">The lens</p>
+            <h2 id="framework-title">Reviewable. Reconstructable. Defensible.</h2>
+            <div class="bat-note">
+              <h3>BAT stands for Backward Accountability Traceability.</h3>
+              <p>
+                It is the assessment method used by Accountable AI to examine
+                whether AI-assisted workflows remain reviewable, reconstructable,
+                and defensible after the point where AI output begins to influence
+                real operational outcomes.
+              </p>
             </div>
+            <p>
+              The work focuses on whether an AI-assisted workflow can be understood
+              later by someone who was not in the room: an auditor, regulator,
+              complaints handler, legal reviewer, risk lead, or senior accountable
+              owner.
+            </p>
           </div>
-          <div class="offer-detail-item">
-            <span class="offer-detail-num">05</span>
-            <div class="offer-detail-text">
-              Overall Defensibility Position and operational remediation priorities
+          <div class="criteria-list" aria-label="Defensibility criteria">
+            <div class="criterion">
+              <h3>Reviewable</h3>
+              <p>Can a qualified person inspect the workflow and see where judgement was applied?</p>
+            </div>
+            <div class="criterion">
+              <h3>Reconstructable</h3>
+              <p>Can the team recreate the material context, evidence, and handoffs behind a decision?</p>
+            </div>
+            <div class="criterion">
+              <h3>Defensible</h3>
+              <p>Can the organisation explain why the decision process was reasonable and controlled?</p>
             </div>
           </div>
         </div>
+      </section>
 
-        <hr class="offer-divider" />
-
-        <p class="offer-snapshot">
-          Built using the BAT operational assessment methodology. This is not a generic AI policy review. It is an operational assessment of whether AI-influenced outcomes remain reviewable, reconstructable, and defensible.
-        </p>
-
-        <a href="mailto:kim@accountableai.uk?subject=Request%20an%20Operational%20AI%20Defensibility%20Review" class="btn-primary">Request a review</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FIVE QUESTIONS -->
-  <section id="five-questions" style="border-bottom: 1px solid var(--border);">
-    <div class="section-label reveal">
-      <div class="section-label-line"></div>
-      <span>The method</span>
-    </div>
-    <h2 class="section-title reveal">The Five-Question<br/><em>Defensibility Test</em></h2>
-    <p class="section-intro reveal">We use a simple five-question test to assess whether your AI use would stand up under scrutiny. This is not a policy review or a generic governance workshop. It is a practical way to examine real AI use cases and understand where decision-making is clear, where accountability sits, and where the process may break down.</p>
-
-    <div style="margin-top: 2.8rem; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; max-width: 1000px;">
-      <div class="reveal" style="border: 1px solid var(--border); padding: 1.8rem 1.6rem; background: var(--page-bg);">
-        <div style="font-family: var(--serif); font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem;">Clarity</div>
-        <p style="font-size: 0.9rem; color: var(--text-body); line-height: 1.6;">What is the AI actually doing?</p>
-      </div>
-      <div class="reveal" style="border: 1px solid var(--border); padding: 1.8rem 1.6rem; background: var(--page-bg);">
-        <div style="font-family: var(--serif); font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem;">Impact</div>
-        <p style="font-size: 0.9rem; color: var(--text-body); line-height: 1.6;">What decision or action follows from the output?</p>
-      </div>
-      <div class="reveal" style="border: 1px solid var(--border); padding: 1.8rem 1.6rem; background: var(--page-bg);">
-        <div style="font-family: var(--serif); font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem;">Ownership</div>
-        <p style="font-size: 0.9rem; color: var(--text-body); line-height: 1.6;">Who is accountable?</p>
-      </div>
-      <div class="reveal" style="border: 1px solid var(--border); padding: 1.8rem 1.6rem; background: var(--page-bg);">
-        <div style="font-family: var(--serif); font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem;">Risk</div>
-        <p style="font-size: 0.9rem; color: var(--text-body); line-height: 1.6;">What happens if it is wrong?</p>
-      </div>
-      <div class="reveal" style="border: 1px solid var(--border); padding: 1.8rem 1.6rem; background: var(--page-bg);">
-        <div style="font-family: var(--serif); font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem;">Review</div>
-        <p style="font-size: 0.9rem; color: var(--text-body); line-height: 1.6;">How is it checked before action is taken?</p>
-      </div>
-    </div>
-
-    <p class="section-intro reveal" style="margin-top: 2.4rem;">The result is a clearer view of what is defensible, what is exposed, and what needs to change first.</p>
-  </section>
-
-
-  <!-- AI QUICK CHECK -->
-  <section id="quick-check" style="border-bottom: 1px solid var(--border); background: var(--page-alt);">
-    <div class="section-label reveal">
-      <div class="section-label-line"></div>
-      <span>Free Resource</span>
-    </div>
-    <h2 class="section-title reveal">Start with the <em>Operational AI Exposure Snapshot</em></h2>
-    <p class="section-intro reveal">
-      A practical 10-minute assessment for organisations using AI tools like ChatGPT, Copilot, or internal automation.
-      Designed to help you quickly identify where accountability, oversight, or governance may already be unclear.
-    </p>
-
-    <div style="margin-top: 3rem; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start;">
-      <div class="reveal">
-        <div style="border: 1px solid var(--border); background: var(--page-bg); padding: 2.2rem;">
-          <p style="font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 1rem;">What it helps you assess</p>
-          <ul class="offer-questions" style="margin-bottom: 0;">
-            <li>What data is being entered into AI systems</li>
-            <li>Whether ownership of outputs is clearly defined</li>
-            <li>How consistently AI is being used across teams</li>
-            <li>Whether your current AI use would stand up to external scrutiny</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reveal" style="border: 1px solid var(--border-gold); background: #fff; padding: 2.4rem;">
-        <span class="offer-tag">Free Download</span>
-        <h3 style="font-family: var(--serif); font-size: 1.6rem; font-weight: 300; margin-bottom: 1.2rem; line-height: 1.25;">
-          Build clarity before issues arise.
-        </h3>
-        <p style="font-size: 0.92rem; line-height: 1.75; color: var(--text-body); margin-bottom: 1.8rem;">
-          Ideal for leadership teams, SMEs, and regulated organisations looking for a lower-friction starting point before deeper review.
-        </p>
-        <a href="downloads/download.html" class="btn-primary">Download the Operational AI Exposure Snapshot</a>
-        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;">
-          Free practical resource • Immediate access • Built for real-world AI governance
-        </p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ABOUT -->
-  <section id="about" class="about-section">
-    <div class="about-layout">
-      <div class="reveal">
-        <div class="section-label">
-          <div class="section-label-line"></div>
-          <span>About</span>
-        </div>
-        <h2 class="section-title">Kim Stevens</h2>
-        <div class="about-text">
-          <p>My background is in regulated environments — including clinical research and global pharmaceutical settings — where accountability is not optional.</p>
-          <p>Accountable AI focuses on the operational conditions around AI use: what people can see, what they can check, what gets recorded, and whether a decision can be defended after the fact.</p>
-          <p>I have worked directly with AI tools in professional settings — including supporting the evaluation and rollout of Microsoft Copilot — and seen how quickly the gap between everyday use and genuine oversight develops.</p>
-          <p><span class="key-emphasis">Accountability has to survive contact with the workflow.</span> That means looking beyond policy language and into the conditions under which people actually review, accept, edit, escalate, or action AI-assisted outputs.</p>
-        </div>
-      </div>
-      <div class="reveal" style="padding-top: 1rem;">
-        <blockquote>
-          "I help organisations understand whether AI-assisted workflows would hold up if they had to reconstruct and defend them."
-        </blockquote>
-        <div style="margin-top: 3rem; padding: 2rem; border: 1px solid var(--border); background: var(--page-bg);">
-          <p style="font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 1rem;">Ideal for</p>
-          <div style="display: flex; flex-direction: column; gap: 0.9rem;">
-            <div style="font-size: 0.9rem; color: var(--text-body); line-height: 1.5; padding-left: 1rem; border-left: 1px solid var(--border-gold);">Healthcare, NHS-adjacent, insurance, public sector, biotech, pharma, and clinical operations.</div>
-            <div style="font-size: 0.9rem; color: var(--text-body); line-height: 1.5; padding-left: 1rem; border-left: 1px solid var(--border-gold);">Teams using summarisation, drafting, triage, copilots, or recommendation systems inside operational workflows.</div>
-            <div style="font-size: 0.9rem; color: var(--text-body); line-height: 1.5; padding-left: 1rem; border-left: 1px solid var(--border-gold);">Leaders who need evidence of reviewability, not reassurance that AI use is broadly governed.</div>
+      <section class="section assessment" aria-labelledby="assessment-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Assessment logic</p>
+            <h2 id="assessment-title">From AI use to operational evidence.</h2>
+          </div>
+          <div class="assessment-grid">
+            <article class="assessment-step">
+              <span>01</span>
+              <h3>Exposure Map</h3>
+              <p>
+                Identify where AI output enters the workflow, who owns the decision,
+                and which operational outcome may be influenced.
+              </p>
+            </article>
+            <article class="assessment-step">
+              <span>02</span>
+              <h3>Human Review Conditions</h3>
+              <p>
+                Test whether review is realistic in the live process, not just
+                required in policy or implied by a sign-off field.
+              </p>
+            </article>
+            <article class="assessment-step">
+              <span>03</span>
+              <h3>Defence Trail</h3>
+              <p>
+                Examine whether the organisation can show the source evidence,
+                AI contribution, human intervention, and decision rationale.
+              </p>
+            </article>
+            <article class="assessment-step">
+              <span>04</span>
+              <h3>Priority Actions</h3>
+              <p>
+                Translate evidence gaps into practical controls, ownership, and
+                time-bound remediation.
+              </p>
+            </article>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
+      <section class="section fit" id="fit" aria-labelledby="fit-title">
+        <div class="section-inner fit-grid">
+          <div>
+            <p class="eyebrow">Best fit</p>
+            <h2 id="fit-title">For teams using AI where accountability matters.</h2>
+          </div>
+          <div class="fit-list">
+            <p>Consequential workflows include operations where AI-supported outputs influence decisions, records, actions, recommendations, escalation pathways, or customer outcomes.</p>
+            <p>Operational teams embedding AI into casework, triage, review, monitoring, or advisory processes.</p>
+            <p>Risk, compliance, legal, audit, and governance leaders who need practical evidence of control.</p>
+            <p>Product and transformation teams moving from AI pilots into governed operational use.</p>
+          </div>
+          <p class="fit-note">
+            The work draws on experience across regulated operational environments,
+            including clinical research and NHS settings, where accountability,
+            review integrity, and defensible decision-making already carry real
+            operational consequences.
+          </p>
+        </div>
+      </section>
 
+      <section class="section outcome" aria-labelledby="outcome-title">
+        <div class="section-inner outcome-grid">
+          <div>
+            <p class="eyebrow">Example Assessment Outputs</p>
+            <h2 id="outcome-title">A clear view of what would stand up, and what would not.</h2>
+          </div>
+          <div class="deliverable-stack">
+            <div class="outcome-panel">
+              <ul>
+                <li>AI operational exposure map showing touchpoints, decision owners, review points, and influenced outcomes.</li>
+                <li>Evidence gap summary covering logging, source traceability, human review, uncertainty capture, and reconstruction risk.</li>
+                <li>Defensibility assessment with priority actions, accountable owners, and suggested timeframes.</li>
+              </ul>
+            </div>
+            <div class="evidence-map" aria-label="Example deliverable placeholders">
+              <div class="evidence-map-header">
+                <span>Example evidence map</span>
+              </div>
+              <div class="evidence-row">
+                <span>AI touchpoint</span>
+                <p>Where AI output begins to influence the operational record.</p>
+              </div>
+              <div class="evidence-row">
+                <span>Review evidence</span>
+                <p>What shows that human review was meaningful, timely, and recorded.</p>
+              </div>
+              <div class="evidence-row">
+                <span>Reconstruction gap</span>
+                <p>What would be difficult to explain later under audit, complaint, or regulatory scrutiny.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="section-inner contact-grid">
+          <div>
+            <p class="eyebrow">Start with one workflow</p>
+            <h2 id="contact-title">Find out whether your AI-assisted process can be defended.</h2>
+          </div>
+          <div class="contact-panel">
+            <p>
+              Share the workflow, the decision type, and the scrutiny it may need
+              to withstand. I will help identify the evidence trail that should exist
+              around it.
+            </p>
+            <a class="button primary" href="mailto:info@accountableai.uk?subject=Defensibility%20review%20enquiry">
+              Discuss a workflow
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <!-- AI QUICK CHECK -->
-  <section id="quick-check" class="quick-check-section">
-    <div class="quick-check-layout">
-      <div>
-        <div class="section-label reveal"><div class="section-label-line"></div><span style="color: rgba(221,230,234,0.75);">Free resource</span></div>
-        <h2 class="section-title reveal">Not sure where your AI use stands?</h2>
-        <p class="section-intro reveal">The Operational AI Exposure Snapshot is a short, plain-English starting point for organisations using tools like ChatGPT, Copilot, or AI-supported workflows. It helps surface where AI may already be touching data, influencing decisions, or creating unclear ownership.</p>
-      </div>
-      <div class="quick-check-box reveal"><p>Use it as a first step before a formal review, workshop, or governance conversation.</p><a href="downloads/download.html" class="btn-primary-light">Download the Operational AI Exposure Snapshot</a></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="contact" class="cta-section">
-    <div class="section-label reveal" style="justify-content: center;">
-      <div class="section-label-line" style="background: rgba(221,230,234,0.45);"></div>
-      <span style="color: rgba(221,230,234,0.72);">Contact</span>
-      <div class="section-label-line" style="background: rgba(221,230,234,0.45);"></div>
-    </div>
-    <h2 class="section-title reveal">Start a conversation.</h2>
-    <p class="section-intro reveal">Most organisations already have AI influencing operational workflows.<br/><br/>The question is whether those workflows remain reviewable and defensible when outcomes are challenged.</p>
-    <div class="reveal" style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap;">
-      <a href="mailto:kim@accountableai.uk" class="btn-primary-light">Email</a>
-      <a href="mailto:kim@accountableai.uk?subject=Discuss%20an%20AI-assisted%20workflow" class="text-link-light">Discuss a workflow</a>
-      <a href="mailto:kim@accountableai.uk?subject=Request%20an%20Operational%20AI%20Defensibility%20Review" class="text-link-light">Request a review</a>
-    </div>
-    <div class="cta-contact reveal" style="margin-top: 2rem;">
-      Operational assessment.&nbsp;&nbsp;·&nbsp;&nbsp;Structured report.&nbsp;&nbsp;·&nbsp;&nbsp;Clear remediation priorities.
-    </div>
-  </section>
-
-  <!-- PRIVACY -->
-  <section id="privacy" class="privacy-section">
-    <div class="section-label">
-      <div class="section-label-line"></div>
-      <span>Privacy</span>
-    </div>
-    <h2 class="section-title" style="font-size: 1.6rem;">Simple, transparent handling of your information</h2>
-    <div class="privacy-content">
-      <p>I only collect the information you choose to share when you get in touch. Your details are used solely to respond to your enquiry and are never shared with third parties.</p>
-      <p>I do not use your information for marketing unless you explicitly ask me to stay in touch. If you have any questions about how your information is handled, feel free to ask.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Accountable <span>AI</span></div>
-    <ul class="footer-links">
-      <li><a href="#privacy">Privacy</a></li>
-      <li><a href="https://www.linkedin.com/in/kimstevensbiolife/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-    </ul>
-    <div class="footer-copy">© 2026 Accountable AI. All rights reserved.</div>
-  </footer>
-
-  <script>
-    const revealEls = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      revealEls.forEach(el => el.classList.add('animate'));
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      revealEls.forEach(el => observer.observe(el));
-    }
-  </script>
-
-</body>
+    <footer class="site-footer">
+      <p>Accountable AI</p>
+      <p>Kim Stevens, Founder</p>
+      <p>AI governance focused on evidence, accountability, and operational reality.</p>
+    </footer>
+  </body>
 </html>
