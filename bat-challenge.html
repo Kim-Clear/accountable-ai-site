@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Take part in the BAT Challenge, an Accountable AI research exercise exploring whether AI-assisted workflows can be reviewed, reconstructed, and defended."
+    />
+    <title>BAT Challenge | Accountable AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bat-page">
+    <header class="site-header bat-header" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="Accountable AI home">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>Accountable AI</span>
+      </a>
+      <nav class="nav-links" aria-label="BAT Challenge">
+        <a href="index.html">Home</a>
+        <a href="#bat-method">Method</a>
+        <a href="#submissions">Use of Submissions</a>
+        <a class="nav-cta" href="#challenge-form">Submit a Workflow</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="bat-hero" aria-labelledby="bat-title">
+        <div class="bat-hero-inner">
+          <div class="bat-hero-copy">
+            <p class="eyebrow">BAT Challenge</p>
+            <h1 id="bat-title">Can your AI-assisted workflow be reconstructed later?</h1>
+            <p class="bat-lede">
+              The BAT Challenge invites people working with AI-assisted processes
+              to describe a real or representative workflow and test whether its
+              evidence trail would stand up under later review.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#challenge-form">Submit a workflow</a>
+            </div>
+          </div>
+
+          <div class="bat-summary-panel" aria-label="BAT Challenge summary">
+            <img
+              class="bat-wordmark"
+              src="accountable-ai-wordmark.svg"
+              alt="Accountable AI"
+            />
+            <div class="bat-signal-grid">
+              <article>
+                <span>Challenge</span>
+                <p>
+                  Describe where AI output enters a workflow and what evidence
+                  remains around the human decision.
+                </p>
+              </article>
+              <article id="bat-method">
+                <span>Methodology Context</span>
+                <p>
+                  BAT means Backward Accountability Traceability: starting from
+                  an outcome and tracing back through AI contribution, review,
+                  evidence, and rationale.
+                </p>
+              </article>
+              <article>
+                <span>Workflow Examples</span>
+                <p>
+                  Case triage, clinical or research review, compliance checks,
+                  grant scoring, HR screening, claims handling, customer support,
+                  and policy drafting.
+                </p>
+              </article>
+              <article>
+                <span>Anonymity</span>
+                <p>
+                  Submit without naming your organisation, clients, patients,
+                  customers, or confidential systems. Representative workflows
+                  are welcome.
+                </p>
+              </article>
+              <article>
+                <span>Research Rationale</span>
+                <p>
+                  The aim is to understand where AI use creates accountability
+                  gaps between policy, live work, evidence capture, and review.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bat-introduction section-band" aria-labelledby="intro-title">
+        <div class="section-inner bat-intro-grid">
+          <div>
+            <p class="eyebrow">Introduction</p>
+            <h2 id="intro-title">BAT looks backwards from the moment accountability is needed.</h2>
+          </div>
+          <div class="bat-intro-copy">
+            <p>
+              Many AI governance conversations focus on the tool. BAT focuses on
+              what happened when someone relied on the output.
+            </p>
+            <p>
+              Who relied on it, what was checked, what evidence was available,
+              and whether the final decision can be explained by someone who was
+              not present at the time.
+            </p>
+            <p class="bat-status-note">
+              BAT is an active research methodology and remains under development.
+            </p>
+            <p>
+              Use the form below to share one workflow. It can be live, planned,
+              paused, or hypothetical, as long as it reflects a realistic
+              operational pattern.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bat-form-section" id="challenge-form" aria-labelledby="form-title">
+        <div class="section-inner">
+          <div class="bat-form-heading">
+            <p class="eyebrow">Submit a Workflow</p>
+            <h2 id="form-title">Take the BAT Challenge.</h2>
+            <p>
+              This challenge collects workflow examples to test and challenge BAT.
+              Please avoid confidential, personal, or identifying details.
+            </p>
+          </div>
+          <div class="tally-embed">
+            <iframe
+              title="BAT Challenge submission form"
+              src="https://tally.so/embed/VL4vk6?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              width="100%"
+              height="760"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bat-research-use" id="submissions" aria-labelledby="submissions-title">
+        <div class="section-inner bat-use-grid">
+          <div>
+            <p class="eyebrow">Use of Submissions</p>
+            <h2 id="submissions-title">How your submission supports BAT research.</h2>
+          </div>
+          <div class="bat-use-panel">
+            <p>
+              Submissions will be reviewed to identify recurring patterns in AI
+              workflow evidence, human review, accountability handoffs, and
+              reconstructability gaps. Insights may inform future writing, talks,
+              research notes, and development of the BAT methodology.
+            </p>
+            <p>
+              BAT is an active research methodology. Participation helps test
+              whether the method reflects operational reality across different
+              sectors and workflow types.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Accountable AI</p>
+      <p>Kim Stevens, Founder</p>
+      <p>AI governance focused on evidence, accountability, and operational reality.</p>
+      <p>Accountable AI Ltd. Registered in England and Wales. Company No. 17239052.</p>
+    </footer>
+
+    <script async src="https://tally.so/widgets/embed.js"></script>
+  </body>
+</html>
