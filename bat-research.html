@@ -1,218 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="BAT Research Programme explores what controls make AI-supported reliance defensible in real operational workflows."
-    />
-    <title>BAT Research Programme | Accountable AI</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="bat-page research-page">
-    <header class="site-header bat-header" aria-label="Primary navigation">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research | Accountable AI</title>
+  <meta name="description" content="Current research questions on accountability, decision ownership, evidence and human oversight in AI-enabled decision-making." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="redesign.css" />
+</head>
+<body class="research-page-body">
+  <header class="site-header">
+    <div class="nav">
       <a class="brand" href="index.html" aria-label="Accountable AI home">
-        <span class="brand-mark" aria-hidden="true">A</span>
+        <span class="brand-mark">AI</span>
         <span>Accountable AI</span>
       </a>
-      <nav class="nav-links" aria-label="BAT Research Programme">
+      <nav class="nav-links" aria-label="Site">
         <a href="index.html">Home</a>
-        <a href="#question">Question</a>
-        <a href="#hypotheses">Hypotheses</a>
-        <a class="nav-cta" href="bat-challenge.html">BAT Challenge</a>
+        <a href="bat-research.html" aria-current="page">Research</a>
+        <a href="index.html#recent-insights">Observations</a>
+        <a class="nav-contact" href="mailto:kim@accountableai.uk">Contact</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main id="top">
-      <section class="research-hero" aria-labelledby="research-title">
-        <div class="research-hero-inner">
-          <div class="research-kicker">
-            <span>BAT</span>
-            <span>Research Programme</span>
-          </div>
-          <h1 id="research-title">Testing accountability against operational reality.</h1>
-          <p class="research-lede">
-            BAT is an active research methodology for examining whether
-            AI-supported reliance can be reviewed, reconstructed, and defended
-            after the moment of use.
-          </p>
-          <p class="research-position">
-            The programme is deliberately open to challenge. Its purpose is not
-            to confirm a finished framework, but to test where accountability
-            controls hold, fail, or need to be redesigned.
-          </p>
-          <p class="reliance-definition">
-            Reliance means a person, team, or organisation uses an AI-supported
-            output as part of a decision, action, communication, recommendation,
-            prioritisation, or other consequential activity.
-          </p>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Research</p>
+        <h1>Questions I am currently exploring.</h1>
+        <p class="lead">My research focuses on accountability in AI-enabled decision-making: who owns a decision, what evidence remains, and whether oversight remains meaningful once work becomes operational.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-intro">
+        <h2>Behavioural Accountability and Traceability</h2>
+        <p>BAT examines whether an AI-assisted workflow can be reconstructed when accountability is needed. It looks at behaviour around the system as well as formal governance around the system.</p>
+      </div>
+      <div class="research-grid">
+        <div class="plain-card">
+          <h3>Decision ownership</h3>
+          <p>How responsibility is allocated when AI shapes analysis, judgement or action.</p>
         </div>
-      </section>
-
-      <section class="research-question" id="question" aria-labelledby="question-title">
-        <div class="section-inner research-question-grid">
-          <p class="eyebrow">Research Question</p>
-          <h2 id="question-title">
-            What controls actually make AI-supported reliance defensible?
-          </h2>
+        <div class="plain-card">
+          <h3>Evidence and reconstruction</h3>
+          <p>What records are needed to explain a decision after it has been made.</p>
         </div>
-      </section>
-
-      <section class="section research-learnings" aria-labelledby="learnings-title">
-        <div class="section-inner research-grid">
-          <div class="research-section-heading">
-            <p class="eyebrow">What BAT Has Learned So Far</p>
-            <h2 id="learnings-title">Early findings from testing BAT against workflow reality.</h2>
-          </div>
-          <div class="learning-list" aria-label="BAT early research learnings">
-            <article>
-              <span>01</span>
-              <div>
-                <h3>Human review is often asserted but rarely evidenced.</h3>
-                <p>
-                  Many AI governance approaches assume human review provides
-                  accountability. BAT repeatedly encounters workflows where review
-                  is described, but the evidence of meaningful review is unclear.
-                </p>
-              </div>
-            </article>
-            <article>
-              <span>02</span>
-              <div>
-                <h3>Review capacity appears to be an accountability control in its own right.</h3>
-                <p>
-                  Assigning a human reviewer is not the same as designing a
-                  review process. As workflow volume increases, accountability may
-                  depend as much on review capacity as on review authority.
-                </p>
-              </div>
-            </article>
-            <article>
-              <span>03</span>
-              <div>
-                <h3>Accountability often becomes unclear at the point of reliance.</h3>
-                <p>
-                  Policies, governance structures, and oversight arrangements may
-                  exist, but responsibility can become ambiguous when an
-                  AI-supported output is actually used to make a decision, take an
-                  action, or communicate with others.
-                </p>
-              </div>
-            </article>
-            <article>
-              <span>04</span>
-              <div>
-                <h3>Not every consequential workflow requires the same evidence.</h3>
-                <p>
-                  BAT's early testing suggests accountability responses may need
-                  to be proportional to context, rather than relying on a single
-                  standard of documentation for all AI-supported activity.
-                </p>
-              </div>
-            </article>
-            <article>
-              <span>05</span>
-              <div>
-                <h3>Accountability may be evidenced without recording every prompt.</h3>
-                <p>
-                  Early BAT development suggests that reconstructability may
-                  depend more on ownership, review activity, rationale,
-                  escalation, and evidence objects than on exhaustive prompt
-                  logging.
-                </p>
-              </div>
-            </article>
-            <article>
-              <span>06</span>
-              <div>
-                <h3>The presence of a human may not be the strongest accountability control.</h3>
-                <p>
-                  BAT began with many of the assumptions common in AI governance
-                  discussions. Ongoing testing has raised the possibility that, in
-                  some workflows, review design, challenge mechanisms, escalation
-                  pathways, and evidence quality may contribute more to
-                  accountability than the simple presence of a human reviewer.
-                  This remains an active hypothesis under investigation.
-                </p>
-              </div>
-            </article>
-          </div>
+        <div class="plain-card">
+          <h3>Human oversight</h3>
+          <p>Whether review means challenge, approval, awareness or administrative sign-off.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section research-hypotheses" id="hypotheses" aria-labelledby="hypotheses-title">
-        <div class="section-inner research-grid">
-          <div class="research-section-heading">
-            <p class="eyebrow">Current Hypotheses</p>
-            <h2 id="hypotheses-title">Claims being tested, not assumptions being sold.</h2>
+    <section class="section">
+      <div class="section-intro">
+        <h2>Governance language under examination</h2>
+        <p>The work is concerned with the gap between governance language and operational meaning. Particular attention is given to terms that sound clear in policy but become ambiguous in practice.</p>
+      </div>
+      <div class="finding-list">
+        <article class="finding">
+          <div class="finding-label"><p>Question</p></div>
+          <div class="finding-body">
+            <blockquote>Meaningful human review</blockquote>
+            <p>What does the phrase require a person to do in practice?</p>
           </div>
-          <div class="hypothesis-list" aria-label="Current BAT research hypotheses">
-            <article>
-              <span>01</span>
-              <p>Human review may not always be the strongest accountability control.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <p>Accountability can be evidenced without recording every prompt.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <p>Review capacity must be operationally designed, not merely assigned.</p>
-            </article>
-            <article>
-              <span>04</span>
-              <p>Aggregate consequence may require distinct accountability treatment.</p>
-            </article>
-          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-intro">
+        <h2>Research themes</h2>
+        <p>These themes guide current reading, review work and writing.</p>
+      </div>
+      <div class="principles" aria-label="Research themes">
+        <div class="principle"><p>Accountability in AI-enabled decision-making</p></div>
+        <div class="principle"><p>Ambiguity in governance language</p></div>
+        <div class="principle"><p>Evidence trails</p></div>
+        <div class="principle"><p>Governance implementation gaps</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="contact-panel">
+        <div>
+          <h2>Contact</h2>
+          <p>For research, independent review or a specific accountability question, email Kim Stevens directly or leave your details below.</p>
         </div>
-      </section>
+        <form class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdEJwxCC3d8PRqaCT-2q9fyazw55WljjYkodHxFwxu-2m26wg/formResponse" method="post" target="_blank">
+          <label>
+            <span>Name</span>
+            <input type="text" name="entry.733697639" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="entry.424688732" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Organisation</span>
+            <input type="text" name="entry.1544531813" autocomplete="organization" />
+          </label>
+          <label>
+            <span>Additional Information</span>
+            <textarea name="entry.1066023229" rows="5" placeholder="Any additional information or questions."></textarea>
+          </label>
+          <button class="email-link" type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-      <section class="section research-seeking" aria-labelledby="seeking-title">
-        <div class="section-inner research-grid">
-          <div class="research-section-heading">
-            <p class="eyebrow">Seeking</p>
-            <h2 id="seeking-title">The programme needs cases that make the method work harder.</h2>
-          </div>
-          <div class="seeking-list">
-            <p>Challenge cases where ordinary governance language does not explain what happened.</p>
-            <p>Pilot workflows where AI-supported reliance is already entering operational practice.</p>
-            <p>Research collaborators working on accountability, assurance, audit, or responsible AI.</p>
-            <p>Critical feedback on where BAT is unclear, incomplete, or too easy on itself.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="research-participate" aria-labelledby="participate-title">
-        <div class="section-inner participate-panel">
-          <div>
-            <p class="eyebrow">Participate</p>
-            <h2 id="participate-title">Help test whether BAT survives real workflow conditions.</h2>
-          </div>
-          <div class="participate-copy">
-            <p>
-              The BAT Challenge collects real and representative workflow
-              examples to test the methodology against operational detail.
-              Submissions should avoid confidential, personal, or identifying
-              information.
-            </p>
-            <a class="button primary" href="bat-challenge.html">Open the BAT Challenge</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>Accountable AI</p>
-      <p>Kim Stevens, Founder</p>
-      <p>AI governance focused on evidence, accountability, and operational reality.</p>
-      <p>Accountable AI Ltd. Registered in England and Wales. Company No. 17239052.</p>
-    </footer>
-  </body>
+  <footer class="site-footer">
+    <span>© 2026 Accountable AI Ltd</span>
+    <span>Accountable AI Ltd. Registered in England and Wales. Company No. 17239052.</span>
+    <a href="mailto:kim@accountableai.uk">kim@accountableai.uk</a>
+  </footer>
+</body>
 </html>
